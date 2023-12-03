@@ -8,3 +8,6 @@ $(document).ready(function() {
     $("#pre-filled-text").val("text=" + encodeURIComponent(text));
   });
 });
+
+// Decode URI and add to element
+$("#link").html(decodeURIComponent($("pre-filled-text").val()) + " <button class='btn btn-primary'>Kirim</button);
