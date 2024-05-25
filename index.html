@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservasi Meja</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Formulir Reservasi Meja</h2>
+        <form action="https://wa.me/6281234567890" method="GET">
+            <!-- Replace with the WhatsApp number for Cafe SUKE HIGHLAND -->
+            <input type="hidden" name="phone" value="6285175132018">
+            <div class="form-group">
+                <label for="nama">Nama:</label>
+                <input type="text" class="form-control" id="nama" name="text" placeholder="Masukkan nama Anda" required>
+            </div>
+            <div class="form-group">
+                <label for="rangka">Dalam Rangka:</label>
+                <input type="text" class="form-control" id="rangka" name="text" placeholder="Contoh: Ulang tahun, pertemuan bisnis, dll." required>
+            </div>
+            <div class="form-group">
+                <label for="tanggal">Tanggal Reservasi:</label>
+                <input type="date" class="form-control" id="tanggal" name="text" required>
+            </div>
+            <div class="form-group">
+                <label for="jumlah">Jumlah Personil:</label>
+                <input type="number" class="form-control" id="jumlah" name="text" placeholder="Contoh: 4 orang" required>
+            </div>
+            <div class="form-group">
+                <label for="keterangan">Keterangan Tambahan:</label>
+                <textarea class="form-control" id="keterangan" name="text" rows="3" placeholder="Tambahkan keterangan khusus (opsional)"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Pesan Meja</button>
+        </form>
+    </div>
+    <!-- Include Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
