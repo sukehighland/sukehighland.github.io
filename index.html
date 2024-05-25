@@ -6,13 +6,20 @@
     <title>Reservasi Meja</title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add custom styles for portrait layout */
+        body {
+            max-width: 210mm; /* A4 width in pixels */
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
         <h2>Formulir Reservasi Meja</h2>
         <form action="https://wa.me/6281234567890" method="GET">
             <!-- Replace with the WhatsApp number for Cafe SUKE HIGHLAND -->
-            <input type="hidden" name="phone" value="6285175132018">
+            <input type="hidden" name="phone" value="6281234567890">
             <div class="form-group">
                 <label for="nama">Nama:</label>
                 <input type="text" class="form-control" id="nama" name="text" placeholder="Masukkan nama Anda" required>
