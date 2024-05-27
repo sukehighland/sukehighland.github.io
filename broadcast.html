@@ -8,4 +8,17 @@
     <meta property="og:image" content="https://sukehighland.github.io/img/suke_may_fest.jpeg">
     <meta property="og:url" content="https://sukehighland.github.io/pamflet.html">
   </head>
+  <body style="margin: 0px; height: 100%; background-color: rgb(14, 14, 14);">
+    <img id="myImg" style="display: block;-webkit-user-select: none;margin: auto;cursor: zoom-in;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="https://sukehighland.github.io/img/suke_may_fest.jpeg" width="367" height="654">
+    <script>
+      function redirectToSite() {
+        window.location.href = "https://sites.google.com/view/sukehighland/";
+      }
+      window.onload = function() {
+        var img = document.getElementById("myImg");
+        img.addEventListener("click", redirectToSite);
+        img.addEventListener("wheel", redirectToSite);
+      };
+    </script>
+  </body>
 </html>
