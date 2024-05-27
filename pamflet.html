@@ -7,7 +7,6 @@
   display: none;
   position: fixed;
   z-index: 1;
-  padding-top: 100px;
   left: 0;
   top: 0;
   width: 100%;
@@ -19,10 +18,14 @@
 
 /* Styling untuk konten pop-up */
 .modal-content {
-  margin: auto;
-  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 80%;
+  height: 80%;
   max-width: 700px;
+  object-fit: contain;
 }
 
 /* Styling untuk tombol keluar */
@@ -72,16 +75,6 @@ var span = document.getElementsByClassName("close")[0];
 span.onclick = function() { 
   modal.style.display = "none";
 }
-</script>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9SBHZPVB55"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9SBHZPVB55');
 </script>
 
 </body>
