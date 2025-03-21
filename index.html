@@ -17,53 +17,53 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
   <script>
    // Countdown Timer Script
-   document.addEventListener('DOMContentLoaded', function() {
-     const countdownElement = document.getElementById('countdown');
-     const eventDate = new Date('March 25, 2025 21:30:00').getTime();
+        document.addEventListener('DOMContentLoaded', function() {
+            const countdownElement = document.getElementById('countdown');
+            const eventDate = new Date('March 25, 2025 21:30:00').getTime();
 
-     const updateCountdown = () => {
-       const now = new Date().getTime();
-       const distance = eventDate - now;
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const distance = eventDate - now;
 
-       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-       countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-       if (distance < 0) {
-         clearInterval(interval);
-         countdownElement.innerHTML = "Acara Sedang Berlangsung";
-       }
-     };
+                if (distance < 0) {
+                    clearInterval(interval);
+                    countdownElement.innerHTML = "Acara Sedang Berlangsung";
+                }
+            };
 
-     const interval = setInterval(updateCountdown, 1000);
-     updateCountdown();
-   });
+            const interval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        });
 
-   // Mobile Menu Toggle Script
-   document.addEventListener('DOMContentLoaded', function() {
-     const menuToggle = document.getElementById('menu-toggle');
-     const menu = document.getElementById('menu');
+        // Mobile Menu Toggle Script
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const menu = document.getElementById('menu');
 
-     menuToggle.addEventListener('click', function() {
-       menu.classList.toggle('hidden');
-     });
-   });
+            menuToggle.addEventListener('click', function() {
+                menu.classList.toggle('hidden');
+            });
+        });
   </script>
   <style>
    .sticky {
-     position: -webkit-sticky;
-     position: sticky;
-     top: 0;
-     z-index: 50;
-   }
-   .gradient-text {
-     background: linear-gradient(90deg, #FFD700, #d4af37);
-     -webkit-background-clip: text;
-     -webkit-text-fill-color: transparent;
-   }
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #FFD700, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
   </style>
  </head>
  <body class="font-roboto">
@@ -144,7 +144,10 @@
      <h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text">
       Nonton Bareng Indonesia Vs Bahrain di Kualifikasi Piala Dunia 2026
      </h2>
-     <p>Nobar siap dalam : </p><div class="text-lg mb-6" id="countdown"> 
+     <p>
+      Nobar siap dalam :
+     </p>
+     <div class="text-lg mb-6" id="countdown">
      </div>
      <p class="text-lg mb-2">
       Selasa, 25 Maret 2025
@@ -178,7 +181,12 @@
      Tentang Kami
     </h2>
     <p class="text-lg mb-6">
-     SUKE HIGHLAND adalah sebuah cafe yang menyediakan tempat makan dan minum, tempat bersantai, tempat bersosialisasi, dan tempat nonton bareng.
+     Halo sobat SUKE HIGHLAND
+     <br/>
+     <br/>
+     Selamat datang kembali
+     <br/>
+     Disini, sobat SUKE HIGHLAND dapat menikmati fitur kami, mulai dari berbagai macam makanan &amp; minuman yang teridiri dari berbagai Stand, Meja Reservasi untuk acara Group, LIVE Music serta WI-FI gratis untuk pelanggan SUKE Highland.
     </p>
     <div class="flex flex-wrap justify-center">
      <div class="w-full md:w-1/3 p-4">
