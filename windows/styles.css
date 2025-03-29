@@ -1,0 +1,242 @@
+:root {
+    --win11-bg: #f3f3f3;
+    --win11-accent: #0078d4;
+    --win11-accent-hover: #106ebe;
+    --win11-text: #000000;
+    --win11-text-light: #ffffff;
+    --win11-taskbar: #2d2d2d;
+    --win11-startmenu: #f5f5f5;
+    --win11-window: #ffffff;
+    --win11-shadow: rgba(0, 0, 0, 0.2);
+    --win11-error: #e81123;
+    --win11-error-bg: #fde7e9;
+    --win11-border: #e0e0e0;
+    --win11-explorer-width: 350px;
+    --win11-explorer-height: 500px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--win11-bg);
+    color: var(--win11-text);
+    height: 100vh;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+.windows11-ui {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+}
+
+/* Taskbar Styles */
+.taskbar {
+    background-color: var(--win11-taskbar);
+    height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px var(--win11-shadow);
+    gap: 5px;
+}
+
+.start-button {
+    color: var(--win11-text-light);
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.start-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.taskbar-icons {
+    display: flex;
+    margin-left: 10px;
+    gap: 2px;
+    height: 100%;
+}
+
+.taskbar-icon {
+    color: var(--win11-text-light);
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: all 0.2s ease;
+    min-width: 70px;
+    height: 100%;
+    position: relative;
+}
+
+.taskbar-icon i {
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+
+.taskbar-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.taskbar-icon.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.taskbar-icon.active::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 3px;
+    background-color: var(--win11-text-light);
+    border-radius: 2px;
+}
+
+/* Explorer Popup Styles */
+.explorer-popup {
+    position: fixed;
+    width: var(--win11-explorer-width);
+    height: var(--win11-explorer-height);
+    background-color: var(--win11-window);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px var(--win11-shadow);
+    z-index: 999;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.explorer-popup.active {
+    display: flex;
+}
+
+.explorer-header {
+    padding: 10px 15px;
+    background-color: var(--win11-accent);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+    user-select: none;
+}
+
+.explorer-content {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+/* Desktop Area with Background */
+.desktop {
+    flex-grow: 1;
+    background-image: url('https://raw.githubusercontent.com/sukehighland/sukehighland.github.io/main/img/bg-hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+/* Explorer Menu Styles */
+.explorer-menu {
+    list-style: none;
+}
+
+.explorer-menu li {
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.2s;
+}
+
+.explorer-menu li:hover {
+    background-color: rgba(0, 120, 212, 0.1);
+}
+
+.explorer-menu li i {
+    width: 20px;
+    text-align: center;
+    color: var(--win11-accent);
+}
+
+.explorer-menu li div {
+    flex-grow: 1;
+}
+
+.explorer-menu li small {
+    display: block;
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 3px;
+}
+
+.close-explorer {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.close-explorer:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Hidden Main Window */
+.window {
+    display: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .explorer-popup {
+        width: 300px;
+        height: 400px;
+    }
+    
+    .taskbar-icon span {
+        display: none;
+    }
+    
+    .taskbar-icon {
+        min-width: auto;
+        padding: 8px;
+    }
+    
+    .taskbar-icon i {
+        margin-bottom: 0;
+    }
+}
