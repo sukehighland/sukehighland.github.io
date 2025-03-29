@@ -11,22 +11,22 @@
   <meta content="website" property="og:type"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            'win11-blue': '#0078d4',
-            'win11-dark': '#202020',
-            'win11-light': '#f2f2f2',
-            'win11-accent': '#60cdff'
+            'android-primary': '#1a73e8',
+            'android-secondary': '#4285f4',
+            'android-light': '#f8f9fa',
+            'android-dark': '#202124',
+            'android-accent': '#34a853',
+            'android-error': '#ea4335',
+            'android-gray': '#5f6368'
           },
           fontFamily: {
-            'segoe': ['Segoe UI', 'sans-serif']
-          },
-          backdropBlur: {
-            'win11': '20px'
+            'roboto': ['Roboto', 'sans-serif']
           }
         }
       }
@@ -63,162 +63,232 @@
     document.addEventListener('DOMContentLoaded', function() {
       const menuToggle = document.getElementById('menu-toggle');
       const menu = document.getElementById('menu');
+      const statusBar = document.getElementById('status-bar');
+      
+      // Add scroll listener to hide status bar on scroll
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 10) {
+          statusBar.classList.add('opacity-0');
+          statusBar.classList.remove('opacity-100');
+        } else {
+          statusBar.classList.add('opacity-100');
+          statusBar.classList.remove('opacity-0');
+        }
+      });
 
       menuToggle.addEventListener('click', function() {
-        menu.classList.toggle('hidden');
+        menu.classList.toggle('translate-x-full');
+        menu.classList.toggle('translate-x-0');
+      });
+      
+      // Close drawer when clicking outside
+      document.addEventListener('click', function(event) {
+        const isMenuOpen = !menu.classList.contains('translate-x-full');
+        const isClickInside = menu.contains(event.target) || menuToggle.contains(event.target);
+        
+        if (isMenuOpen && !isClickInside) {
+          menu.classList.remove('translate-x-0');
+          menu.classList.add('translate-x-full');
+        }
       });
     });
   </script>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f2f2f2;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f8f9fa;
+      color: #202124;
     }
     
-    .win11-glass {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 12px;
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-    }
-    
-    .win11-card {
+    .android-card {
       background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s ease;
-    }
-    
-    .win11-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    }
-    
-    .win11-button {
-      background: #0078d4;
-      color: white;
-      border-radius: 20px;
-      padding: 10px 24px;
+      border-radius: 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
       transition: all 0.2s ease;
+    }
+    
+    .android-card:active {
+      background-color: #f1f3f4;
+    }
+    
+    .android-button {
+      background: #1a73e8;
+      color: white;
+      border-radius: 24px;
+      padding: 12px 24px;
       font-weight: 500;
+      transition: all 0.2s ease;
     }
     
-    .win11-button:hover {
-      background: #106ebe;
+    .android-button:active {
+      background: #185abc;
+      transform: scale(0.98);
     }
     
-    .win11-input {
-      background: white;
-      border: 1px solid #d1d1d1;
+    .android-fab {
+      background: #1a73e8;
+      color: white;
+      border-radius: 28px;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+      transition: all 0.2s ease;
+    }
+    
+    .android-fab:active {
+      background: #185abc;
+      transform: scale(0.95);
+    }
+    
+    .android-input {
+      background: #f1f3f4;
+      border: none;
       border-radius: 8px;
       padding: 12px 16px;
       transition: all 0.2s ease;
     }
     
-    .win11-input:focus {
-      border-color: #0078d4;
-      box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2);
+    .android-input:focus {
+      background: white;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.3);
       outline: none;
     }
     
-    .sticky {
-      position: -webkit-sticky;
-      position: sticky;
-      top: 0;
-      z-index: 50;
+    .nav-drawer {
+      transition: transform 0.3s ease;
     }
     
-    .taskbar {
-      background: rgba(242, 242, 242, 0.8);
-      backdrop-filter: blur(20px);
-      border-top: 1px solid rgba(255, 255, 255, 0.5);
+    .status-bar {
+      transition: opacity 0.3s ease;
+    }
+    
+    .bottom-nav-item {
+      transition: all 0.2s ease;
+    }
+    
+    .bottom-nav-item.active {
+      color: #1a73e8;
+    }
+    
+    .bottom-nav-item:active {
+      transform: scale(0.9);
+    }
+    
+    @media (max-width: 768px) {
+      .android-card {
+        border-radius: 12px;
+      }
     }
   </style>
 </head>
-<body class="font-segoe">
-  <!-- Navbar in Windows 11 Style -->
-  <nav class="win11-glass sticky shadow-md">
-    <div class="container mx-auto flex justify-center items-center p-4">
-      <ul class="flex space-x-8 text-win11-dark">
-        <li>
-          <a class="hover:text-win11-blue font-medium px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-60 transition-all" href="#beranda">
-            <i class="fas fa-home mr-2"></i>Beranda
-          </a>
-        </li>
-        <li>
-          <a class="hover:text-win11-blue font-medium px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-60 transition-all" href="#tentang">
-            <i class="fas fa-info-circle mr-2"></i>Tentang
-          </a>
-        </li>
-        <li>
-          <a class="text-win11-blue font-bold px-4 py-2" href="#">
-            SUKE HIGHLAND
-          </a>
-        </li>
-        <li>
-          <a class="hover:text-win11-blue font-medium px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-60 transition-all" href="#layanan">
-            <i class="fas fa-concierge-bell mr-2"></i>Layanan
-          </a>
-        </li>
-        <li>
-          <a class="hover:text-win11-blue font-medium px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-60 transition-all" href="#kontak">
-            <i class="fas fa-envelope mr-2"></i>Kontak
-          </a>
-        </li>
-      </ul>
-      <div class="md:hidden relative">
-        <button class="text-win11-dark focus:outline-none" id="menu-toggle">
-          <i class="fas fa-bars text-2xl"></i>
+<body class="font-roboto">
+  <!-- Android Status Bar (Mobile Only) -->
+  <div id="status-bar" class="status-bar bg-black text-white text-xs p-1 flex justify-between items-center md:hidden sticky top-0 z-50 opacity-100">
+    <div class="flex items-center space-x-1">
+      <span>21:09</span>
+    </div>
+    <div class="flex items-center space-x-2">
+      <i class="fas fa-wifi"></i>
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-battery-three-quarters"></i>
+    </div>
+  </div>
+
+  <!-- Toolbar - Android Style -->
+  <nav class="bg-white sticky top-0 z-40 shadow-sm md:shadow-none">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <div class="flex items-center">
+        <button class="text-android-dark p-2 focus:outline-none mr-2 md:hidden" id="menu-toggle">
+          <i class="fas fa-bars text-xl"></i>
         </button>
-        <ul class="absolute right-0 mt-2 w-48 win11-glass text-win11-dark rounded-lg shadow-lg hidden" id="menu">
-          <li class="border-b border-gray-200">
-            <a class="block px-4 py-3 hover:bg-white hover:bg-opacity-60 hover:text-win11-blue" href="#beranda">
-              Beranda
-            </a>
-          </li>
-          <li class="border-b border-gray-200">
-            <a class="block px-4 py-3 hover:bg-white hover:bg-opacity-60 hover:text-win11-blue" href="#tentang">
-              Tentang
-            </a>
-          </li>
-          <li class="border-b border-gray-200">
-            <a class="block px-4 py-3 hover:bg-white hover:bg-opacity-60 hover:text-win11-blue" href="#layanan">
-              Layanan
-            </a>
-          </li>
-          <li class="border-b border-gray-200">
-            <a class="block px-4 py-3 hover:bg-white hover:bg-opacity-60 hover:text-win11-blue" href="#brand">
-              Brand
-            </a>
-          </li>
-          <li>
-            <a class="block px-4 py-3 hover:bg-white hover:bg-opacity-60 hover:text-win11-blue" href="#kontak">
-              Kontak
-            </a>
-          </li>
-        </ul>
+        <a class="text-android-primary text-xl font-medium" href="#">
+          SUKE HIGHLAND
+        </a>
+      </div>
+      <div class="hidden md:flex space-x-6 text-android-dark">
+        <a class="hover:text-android-primary font-medium" href="#beranda">Beranda</a>
+        <a class="hover:text-android-primary font-medium" href="#tentang">Tentang</a>
+        <a class="hover:text-android-primary font-medium" href="#layanan">Layanan</a>
+        <a class="hover:text-android-primary font-medium" href="#brand">Brand</a>
+        <a class="hover:text-android-primary font-medium" href="#kontak">Kontak</a>
+      </div>
+      <div class="flex items-center">
+        <button class="text-android-dark p-2 focus:outline-none">
+          <i class="fas fa-search text-xl"></i>
+        </button>
+        <button class="text-android-dark p-2 focus:outline-none ml-2">
+          <i class="fas fa-ellipsis-v text-xl"></i>
+        </button>
       </div>
     </div>
   </nav>
+  
+  <!-- Side Navigation Drawer (Mobile Only) - Android Style -->
+  <div id="menu" class="fixed top-0 left-0 h-full w-4/5 max-w-xs bg-white z-50 shadow-xl transform translate-x-full nav-drawer md:hidden">
+    <div class="bg-android-primary p-8 text-white">
+      <h2 class="text-2xl font-medium">SUKE HIGHLAND</h2>
+      <p class="mt-1 opacity-80">Menu</p>
+    </div>
+    <ul class="py-2">
+      <li>
+        <a class="flex items-center px-6 py-4 hover:bg-gray-100" href="#beranda">
+          <i class="fas fa-home text-android-gray w-8"></i>
+          <span>Beranda</span>
+        </a>
+      </li>
+      <li>
+        <a class="flex items-center px-6 py-4 hover:bg-gray-100" href="#tentang">
+          <i class="fas fa-info-circle text-android-gray w-8"></i>
+          <span>Tentang</span>
+        </a>
+      </li>
+      <li>
+        <a class="flex items-center px-6 py-4 hover:bg-gray-100" href="#layanan">
+          <i class="fas fa-concierge-bell text-android-gray w-8"></i>
+          <span>Layanan</span>
+        </a>
+      </li>
+      <li>
+        <a class="flex items-center px-6 py-4 hover:bg-gray-100" href="#brand">
+          <i class="fas fa-handshake text-android-gray w-8"></i>
+          <span>Brand</span>
+        </a>
+      </li>
+      <li>
+        <a class="flex items-center px-6 py-4 hover:bg-gray-100" href="#kontak">
+          <i class="fas fa-envelope text-android-gray w-8"></i>
+          <span>Kontak</span>
+        </a>
+      </li>
+      <li class="border-t mt-4">
+        <a class="flex items-center px-6 py-4 hover:bg-gray-100" href="#">
+          <i class="fas fa-cog text-android-gray w-8"></i>
+          <span>Pengaturan</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 
-  <!-- Hero Section -->
-  <section class="relative min-h-screen" id="beranda">
+  <!-- Hero Section - Android Style -->
+  <section class="relative" id="beranda">
     <div class="absolute inset-0 z-0">
       <div 
         class="w-full h-full bg-cover bg-center"
         style="background-image: url('img/bg-hero.png')">
       </div>
     </div>
-    <div class="container mx-auto relative z-10 min-h-screen flex flex-col justify-center items-center text-center px-4">
-      <div class="win11-glass p-8 max-w-2xl">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-win11-dark">Selamat Datang di SUKE HIGHLAND</h1>
-        <p class="text-lg mb-8 text-win11-dark">Nikmati suasana nyaman dengan berbagai layanan kami</p>
-        <div class="flex flex-wrap justify-center gap-4">
-          <a href="#layanan" class="win11-button">
+    <div class="container mx-auto relative z-10 py-20 flex flex-col justify-center items-center text-center px-4">
+      <div class="android-card p-6 max-w-lg">
+        <h1 class="text-2xl md:text-4xl font-medium mb-4 text-android-dark">Selamat Datang di SUKE HIGHLAND</h1>
+        <p class="text-android-gray mb-6">Nikmati suasana nyaman dengan berbagai layanan kami</p>
+        <div class="flex flex-col md:flex-row justify-center gap-3">
+          <a href="#layanan" class="android-button text-center">
             Jelajahi Layanan
           </a>
-          <a href="#kontak" class="bg-white text-win11-blue px-6 py-3 rounded-full hover:bg-gray-100 transition-all font-medium">
+          <a href="#kontak" class="bg-gray-100 text-android-primary px-6 py-3 rounded-full text-center font-medium">
             Hubungi Kami
           </a>
         </div>
@@ -226,171 +296,156 @@
     </div>
   </section>
 
-  <!-- About Section in Windows 11 Style -->
-  <section class="py-20 bg-white" id="tentang">
-    <div class="container mx-auto text-center px-4">
-      <h2 class="text-3xl md:text-4xl font-bold mb-10 text-win11-dark">
+  <!-- About Section - Android Style -->
+  <section class="py-12 md:py-16 bg-white" id="tentang">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-medium mb-8 text-android-dark text-center">
         Tentang Kami
       </h2>
-      <p class="text-lg mb-12 max-w-3xl mx-auto">
+      <p class="text-android-gray mb-10 max-w-3xl mx-auto text-center">
         Halo sobat SUKE HIGHLAND
-        <br/>
-        <br/>
+        <br/><br/>
         Selamat datang kembali
         <br/>
         Disini, sobat SUKE HIGHLAND dapat menikmati fitur kami, mulai dari berbagai macam makanan &amp; minuman yang teridiri dari berbagai Stand, Meja Reservasi untuk acara Group, LIVE Music serta WI-FI gratis untuk pelanggan SUKE Highland.
       </p>
-      <div class="flex flex-wrap justify-center gap-8">
-        <div class="w-full md:w-80 p-0">
-          <div class="win11-card p-6 h-full">
-            <div class="bg-win11-blue bg-opacity-10 p-4 rounded-full inline-block mb-4">
-              <i class="fas fa-bullseye text-3xl text-win11-blue"></i>
-            </div>
-            <h3 class="text-2xl font-bold mb-4 text-win11-dark">
-              Misi Kami
-            </h3>
-            <p class="mb-6 text-gray-600">
-              Memberikan pengalaman yang nyaman dalam menikmati makanan dan minuman, bersantai, bersosialisasi, dan nonton bareng.
-            </p>
-            <img alt="Anggota tim bekerja pada strategi SEO" class="rounded-xl w-full h-48 object-cover" src="img/sh1.jpg"/>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="android-card p-4">
+          <div class="bg-android-primary bg-opacity-10 p-4 rounded-full inline-block mb-4">
+            <i class="fas fa-bullseye text-2xl text-android-primary"></i>
           </div>
+          <h3 class="text-xl font-medium mb-3 text-android-dark">
+            Misi Kami
+          </h3>
+          <p class="text-android-gray mb-4">
+            Memberikan pengalaman yang nyaman dalam menikmati makanan dan minuman, bersantai, bersosialisasi, dan nonton bareng.
+          </p>
+          <img alt="Anggota tim bekerja pada strategi SEO" class="rounded-lg w-full h-40 object-cover" src="img/sh1.jpg"/>
         </div>
-        <div class="w-full md:w-80 p-0">
-          <div class="win11-card p-6 h-full">
-            <div class="bg-win11-blue bg-opacity-10 p-4 rounded-full inline-block mb-4">
-              <i class="fas fa-eye text-3xl text-win11-blue"></i>
-            </div>
-            <h3 class="text-2xl font-bold mb-4 text-win11-dark">
-              Visi Kami
-            </h3>
-            <p class="mb-6 text-gray-600">
-              Menjadi salah satu cafe yang dikenal karena suasana yang nyaman dan layanan yang baik.
-            </p>
-            <img alt="Anggota tim menganalisis data SEO" class="rounded-xl w-full h-48 object-cover" src="img/sh2.png"/>
+        <div class="android-card p-4">
+          <div class="bg-android-primary bg-opacity-10 p-4 rounded-full inline-block mb-4">
+            <i class="fas fa-eye text-2xl text-android-primary"></i>
           </div>
+          <h3 class="text-xl font-medium mb-3 text-android-dark">
+            Visi Kami
+          </h3>
+          <p class="text-android-gray mb-4">
+            Menjadi salah satu cafe yang dikenal karena suasana yang nyaman dan layanan yang baik.
+          </p>
+          <img alt="Anggota tim menganalisis data SEO" class="rounded-lg w-full h-40 object-cover" src="img/sh2.png"/>
         </div>
-        <div class="w-full md:w-80 p-0">
-          <div class="win11-card p-6 h-full">
-            <div class="bg-win11-blue bg-opacity-10 p-4 rounded-full inline-block mb-4">
-              <i class="fas fa-star text-3xl text-win11-blue"></i>
-            </div>
-            <h3 class="text-2xl font-bold mb-4 text-win11-dark">
-              Nilai Kami
-            </h3>
-            <p class="mb-6 text-gray-600">
-              Kenyamanan dan keunggulan.
-            </p>
-            <img alt="Kolaborasi tim pada proyek SEO" class="rounded-xl w-full h-48 object-cover" src="img/sh3.png"/>
+        <div class="android-card p-4">
+          <div class="bg-android-primary bg-opacity-10 p-4 rounded-full inline-block mb-4">
+            <i class="fas fa-star text-2xl text-android-primary"></i>
           </div>
+          <h3 class="text-xl font-medium mb-3 text-android-dark">
+            Nilai Kami
+          </h3>
+          <p class="text-android-gray mb-4">
+            Kenyamanan dan keunggulan.
+          </p>
+          <img alt="Kolaborasi tim pada proyek SEO" class="rounded-lg w-full h-40 object-cover" src="img/sh3.png"/>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Services Section in Windows 11 Style -->
-  <section class="bg-win11-light py-20" id="layanan">
-    <div class="container mx-auto text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-12 text-win11-dark">
+  <!-- Services Section - Android Style -->
+  <section class="py-12 md:py-16 bg-android-light" id="layanan">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-medium mb-8 text-android-dark text-center">
         Layanan Kami
       </h2>
-      <div class="flex flex-wrap justify-center gap-6">
-        <div class="w-full md:w-64 p-0">
-          <div class="win11-card p-6 h-full">
-            <div class="bg-win11-blue bg-opacity-10 p-4 rounded-full inline-block mb-4">
-              <i class="fas fa-utensils text-3xl text-win11-blue"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-3 text-win11-dark">
-              Pesan Makanan
-            </h3>
-            <p class="text-gray-600">
-              Pesan makanan lezat dari menu kami yang beragam.
-            </p>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="android-card p-5">
+          <div class="bg-android-primary bg-opacity-10 p-3 rounded-full inline-block mb-4">
+            <i class="fas fa-utensils text-xl text-android-primary"></i>
           </div>
+          <h3 class="text-lg font-medium mb-2 text-android-dark">
+            Pesan Makanan
+          </h3>
+          <p class="text-android-gray text-sm">
+            Pesan makanan lezat dari menu kami yang beragam.
+          </p>
         </div>
-        <div class="w-full md:w-64 p-0">
-          <div class="win11-card p-6 h-full">
-            <div class="bg-win11-blue bg-opacity-10 p-4 rounded-full inline-block mb-4">
-              <i class="fas fa-coffee text-3xl text-win11-blue"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-3 text-win11-dark">
-              Pesan Minuman
-            </h3>
-            <p class="text-gray-600">
-              Nikmati berbagai minuman segar.
-            </p>
+        <div class="android-card p-5">
+          <div class="bg-android-primary bg-opacity-10 p-3 rounded-full inline-block mb-4">
+            <i class="fas fa-coffee text-xl text-android-primary"></i>
           </div>
+          <h3 class="text-lg font-medium mb-2 text-android-dark">
+            Pesan Minuman
+          </h3>
+          <p class="text-android-gray text-sm">
+            Nikmati berbagai minuman segar.
+          </p>
         </div>
-        <div class="w-full md:w-64 p-0">
-          <div class="win11-card p-6 h-full">
-            <div class="bg-win11-blue bg-opacity-10 p-4 rounded-full inline-block mb-4">
-              <i class="fas fa-wifi text-3xl text-win11-blue"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-3 text-win11-dark">
-              Internet Gratis
-            </h3>
-            <p class="text-gray-600">
-              Akses internet gratis untuk semua pelanggan kami.
-            </p>
+        <div class="android-card p-5">
+          <div class="bg-android-primary bg-opacity-10 p-3 rounded-full inline-block mb-4">
+            <i class="fas fa-wifi text-xl text-android-primary"></i>
           </div>
+          <h3 class="text-lg font-medium mb-2 text-android-dark">
+            Internet Gratis
+          </h3>
+          <p class="text-android-gray text-sm">
+            Akses internet gratis untuk semua pelanggan kami.
+          </p>
         </div>
-        <div class="w-full md:w-64 p-0">
-          <div class="win11-card p-6 h-full">
-            <div class="bg-win11-blue bg-opacity-10 p-4 rounded-full inline-block mb-4">
-              <i class="fas fa-parking text-3xl text-win11-blue"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-3 text-win11-dark">
-              Parkiran Gratis
-            </h3>
-            <p class="text-gray-600">
-              Parkir gratis tersedia untuk semua pelanggan kami.
-            </p>
+        <div class="android-card p-5">
+          <div class="bg-android-primary bg-opacity-10 p-3 rounded-full inline-block mb-4">
+            <i class="fas fa-parking text-xl text-android-primary"></i>
           </div>
+          <h3 class="text-lg font-medium mb-2 text-android-dark">
+            Parkiran Gratis
+          </h3>
+          <p class="text-android-gray text-sm">
+            Parkir gratis tersedia untuk semua pelanggan kami.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Brands Section in Windows 11 Style -->
-  <section class="py-20 bg-white" id="brand">
-    <div class="container mx-auto text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-12 text-win11-dark">
+  <!-- Brands Section - Android Style -->
+  <section class="py-12 md:py-16 bg-white" id="brand">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-medium mb-8 text-android-dark text-center">
         Support By
       </h2>
-      <div class="flex flex-wrap justify-center gap-8">
-        <div class="win11-card p-6 flex items-center justify-center w-64 h-64">
-          <img alt="Logo Bir Bintang" class="max-h-full max-w-full" src="img/bintang.jpeg"/>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="android-card p-4 flex items-center justify-center">
+          <img alt="Logo Bir Bintang" class="max-h-32" src="img/bintang.jpeg"/>
         </div>
-        <div class="win11-card p-6 flex items-center justify-center w-64 h-64">
-          <img alt="Logo Gudang Garam" class="max-h-full max-w-full" src="img/gg.jpeg"/>
+        <div class="android-card p-4 flex items-center justify-center">
+          <img alt="Logo Gudang Garam" class="max-h-32" src="img/gg.jpeg"/>
         </div>
-        <div class="win11-card p-6 flex items-center justify-center w-64 h-64">
-          <img alt="Logo Bir Singa Raja" class="max-h-full max-w-full" src="img/singaraja.jpeg"/>
+        <div class="android-card p-4 flex items-center justify-center">
+          <img alt="Logo Bir Singa Raja" class="max-h-32" src="img/singaraja.jpeg"/>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section in Windows 11 Style -->
-  <section class="bg-win11-light py-20" id="kontak">
-    <div class="container mx-auto text-center px-4">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-win11-dark">
+  <!-- Contact Section - Android Style -->
+  <section class="py-12 md:py-16 bg-android-light" id="kontak">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-medium mb-6 text-android-dark text-center">
         Hubungi Kami
       </h2>
-      <p class="text-lg mb-12 text-gray-700">
+      <p class="text-android-gray mb-8 text-center">
         Hubungi kami untuk mempelajari lebih lanjut tentang layanan kami.
       </p>
-      <div class="win11-glass max-w-lg mx-auto p-8">
+      <div class="android-card max-w-md mx-auto p-6">
         <form>
-          <div class="mb-6">
-            <input class="win11-input w-full" placeholder="Nama Anda" type="text"/>
+          <div class="mb-5">
+            <input class="android-input w-full" placeholder="Nama Anda" type="text"/>
+          </div>
+          <div class="mb-5">
+            <input class="android-input w-full" placeholder="Email Anda" type="email"/>
           </div>
           <div class="mb-6">
-            <input class="win11-input w-full" placeholder="Email Anda" type="email"/>
+            <textarea class="android-input w-full h-28" placeholder="Pesan Anda"></textarea>
           </div>
-          <div class="mb-6">
-            <textarea class="win11-input w-full h-32" placeholder="Pesan Anda"></textarea>
-          </div>
-          <button class="win11-button w-full" type="submit">
+          <button class="android-button w-full" type="submit">
             Kirim Pesan
           </button>
         </form>
@@ -398,34 +453,40 @@
     </div>
   </section>
 
-  <!-- Footer in Windows 11 Style -->
-  <footer class="py-8 bg-white border-t">
-    <div class="container mx-auto text-center">
-      <p class="text-gray-600">
+  <!-- Footer - Android Style -->
+  <footer class="py-6 bg-white border-t">
+    <div class="container mx-auto text-center px-4">
+      <p class="text-android-gray text-sm">
         Copyright SUKE HIGHLAND | Design By Siber Digital Toraja Utara
       </p>
     </div>
   </footer>
 
-  <!-- Windows 11 Style Taskbar -->
-  <div class="fixed bottom-0 left-0 right-0 taskbar py-3 z-50">
-    <div class="flex justify-center space-x-4">
-      <a href="#beranda" class="p-2 rounded-full hover:bg-white hover:bg-opacity-60 transition-all">
-        <i class="fas fa-home text-win11-blue text-2xl"></i>
-      </a>
-      <a href="#tentang" class="p-2 rounded-full hover:bg-white hover:bg-opacity-60 transition-all">
-        <i class="fas fa-info-circle text-win11-blue text-2xl"></i>
-      </a>
-      <a href="#layanan" class="p-2 rounded-full hover:bg-white hover:bg-opacity-60 transition-all">
-        <i class="fas fa-concierge-bell text-win11-blue text-2xl"></i>
-      </a>
-      <a href="#brand" class="p-2 rounded-full hover:bg-white hover:bg-opacity-60 transition-all">
-        <i class="fas fa-handshake text-win11-blue text-2xl"></i>
-      </a>
-      <a href="#kontak" class="p-2 rounded-full hover:bg-white hover:bg-opacity-60 transition-all">
-        <i class="fas fa-envelope text-win11-blue text-2xl"></i>
-      </a>
-    </div>
+  <!-- Floating Action Button - Android Style (Mobile Only) -->
+  <div class="fixed bottom-20 right-6 z-30 md:hidden">
+    <a href="#kontak" class="android-fab">
+      <i class="fas fa-envelope"></i>
+    </a>
+  </div>
+
+  <!-- Bottom Navigation Bar - Android Style (Mobile Only) -->
+  <div class="fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around py-2 md:hidden z-30">
+    <a href="#beranda" class="bottom-nav-item active flex flex-col items-center px-2 py-1">
+      <i class="fas fa-home text-lg"></i>
+      <span class="text-xs mt-1">Beranda</span>
+    </a>
+    <a href="#tentang" class="bottom-nav-item text-android-gray flex flex-col items-center px-2 py-1">
+      <i class="fas fa-info-circle text-lg"></i>
+      <span class="text-xs mt-1">Tentang</span>
+    </a>
+    <a href="#layanan" class="bottom-nav-item text-android-gray flex flex-col items-center px-2 py-1">
+      <i class="fas fa-concierge-bell text-lg"></i>
+      <span class="text-xs mt-1">Layanan</span>
+    </a>
+    <a href="#brand" class="bottom-nav-item text-android-gray flex flex-col items-center px-2 py-1">
+      <i class="fas fa-handshake text-lg"></i>
+      <span class="text-xs mt-1">Brand</span>
+    </a>
   </div>
 </body>
 </html>
