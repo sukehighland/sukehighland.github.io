@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 11 Web App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="windows11-ui">
+        <!-- Taskbar -->
+        <div class="taskbar">
+            <div class="start-button" onclick="toggleStartMenu()" title="Start Menu">
+                <i class="fab fa-windows"></i>
+            </div>
+            <div class="taskbar-icons">
+                <div class="taskbar-icon" onclick="loadContent('makanan')" title="Makanan">
+                    <i class="fas fa-utensils"></i>
+                    <span>Makanan</span>
+                </div>
+                <div class="taskbar-icon" onclick="loadContent('minuman')" title="Minuman">
+                    <i class="fas fa-glass-martini-alt"></i>
+                    <span>Minuman</span>
+                </div>
+                <div class="taskbar-icon" onclick="loadContent('reservasi')" title="Reservasi">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Reservasi</span>
+                </div>
+                <div class="taskbar-icon" onclick="loadContent('event')" title="Event">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Event</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desktop Area with Background -->
+        <div class="desktop">
+            <!-- Main window is hidden -->
+            <div class="window" id="mainWindow" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
