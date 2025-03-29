@@ -1,511 +1,382 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>SUKE HIGHLAND - Windows 10 Style</title>
-  <meta content="Nonton Bareng Indonesia Vs Bahrain di Kualifikasi Piala Dunia 2026" property="og:title"/>
-  <meta content="Selasa, 25 Maret 2025 ⏰ 21.30 WITA - Selesai 📍 Lokasi: Area Cafe SUKE HIGHLAND. Bioskop NOBAR" property="og:description"/>
-  <meta content="https://cdn1-production-images-kly.akamaized.net/Pg74NPs_T0G0S95pykjCD51acek=/640x640/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/5159214/original/045111000_1741694493-Timnas_Indonesia_-_Ilustrasi_Psywar_Timnas_Indonesia_Vs_Bahrain_copy.jpg" property="og:image"/>
-  <meta content="https://sukehighland.github.io/" property="og:url"/>
-  <meta content="website" property="og:type"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    /* Windows 10 Style */
-    :root {
-      --win-blue: #0078d7;
-      --win-dark: #202020;
-      --win-gray: #e6e6e6;
-      --win-light: #f0f0f0;
-      --win-lighter: #fafafa;
-      --win-border: #d4d4d4;
-      --win-hover: #e5f1fb;
-      --win-taskbar: #202020;
-      --win-start-menu: #333333;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    
-    body {
-      background-color: var(--win-lighter);
-      overflow: hidden;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    /* Windows 10 Taskbar */
-    .taskbar {
-      background-color: var(--win-taskbar);
-      height: 40px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      padding: 0 10px;
-      color: white;
-      position: fixed;
-      bottom: 0;
-      z-index: 1000;
-    }
-    
-    .start-button {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
-    
-    .start-button:hover {
-      background-color: #333;
-    }
-    
-    .taskbar-icons {
-      display: flex;
-      margin-left: 10px;
-    }
-    
-    .taskbar-icon {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      margin-right: 5px;
-    }
-    
-    .taskbar-icon:hover {
-      background-color: #333;
-    }
-    
-    .taskbar-right {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-    }
-    
-    .time-date {
-      font-size: 12px;
-      margin-right: 10px;
-    }
-    
-    /* Windows 10 Desktop */
-    .desktop {
-      flex-grow: 1;
-      padding: 20px;
-      position: relative;
-      overflow: auto;
-      padding-bottom: 60px;
-    }
-    
-    /* Windows 10 Window */
-    .window {
-      background-color: white;
-      border: 1px solid var(--win-border);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: 96%;
-      max-width: 1200px;
-      height: calc(100vh - 100px);
-      margin: 10px auto;
-      display: flex;
-      flex-direction: column;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    
-    .window-header {
-      background-color: var(--win-blue);
-      height: 32px;
-      display: flex;
-      align-items: center;
-      padding: 0 10px;
-      color: white;
-    }
-    
-    .window-title {
-      font-size: 14px;
-      font-weight: 500;
-      margin-left: 8px;
-    }
-    
-    .window-controls {
-      margin-left: auto;
-      display: flex;
-    }
-    
-    .window-control {
-      width: 46px;
-      height: 32px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
-    
-    .minimize:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .maximize:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .close:hover {
-      background-color: #e81123;
-    }
-    
-    .window-menu {
-      background-color: var(--win-light);
-      height: 34px;
-      display: flex;
-      align-items: center;
-      padding: 0 10px;
-      border-bottom: 1px solid var(--win-border);
-    }
-    
-    .menu-item {
-      font-size: 13px;
-      margin-right: 20px;
-      cursor: pointer;
-      padding: 5px 0;
-    }
-    
-    .menu-item:hover {
-      color: var(--win-blue);
-    }
-    
-    .window-content {
-      flex: 1;
-      overflow: auto;
-      padding: 10px;
-    }
-    
-    /* Desktop Icons */
-    .desktop-icons {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 80px);
-      grid-gap: 20px;
-    }
-    
-    .desktop-icon {
-      width: 80px;
-      text-align: center;
-      cursor: pointer;
-    }
-    
-    .desktop-icon i {
-      font-size: 32px;
-      color: var(--win-blue);
-      margin-bottom: 8px;
-    }
-    
-    .desktop-icon span {
-      font-size: 12px;
-      color: white;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 2px 4px;
-    }
-    
-    /* SUKE HIGHLAND Styles */
-    .content-section {
-      margin-bottom: 20px;
-      padding: 20px;
-      background-color: white;
-      border: 1px solid var(--win-border);
-    }
-    
-    .content-section h2 {
-      font-size: 20px;
-      margin-bottom: 15px;
-      color: var(--win-blue);
-    }
-    
-    .content-section h3 {
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-    
-    .section-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-    }
-    
-    .card {
-      padding: 15px;
-      background-color: var(--win-light);
-      border: 1px solid var(--win-border);
-    }
-    
-    .card i {
-      font-size: 24px;
-      color: var(--win-blue);
-      margin-bottom: 10px;
-    }
-    
-    img {
-      max-width: 100%;
-      border: 1px solid var(--win-border);
-    }
-    
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-      border: 1px solid var(--win-border);
-    }
-    
-    .contact-form button {
-      background-color: var(--win-blue);
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      cursor: pointer;
-    }
-    
-    .contact-form button:hover {
-      background-color: #005fa1;
-    }
-    
-    /* Scrollbar Windows 10 Style */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    
-    ::-webkit-scrollbar-track {
-      background: var(--win-light);
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background: #aaa;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-      background: #999;
-    }
-    
-    /* Responsive for Mobile */
-    @media (max-width: 768px) {
-      .window {
-        width: 100%;
-        height: calc(100vh - 80px);
-        margin: 5px 0;
-      }
-      
-      .desktop {
-        padding: 10px;
-      }
-      
-      .section-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>SUKE HIGHLAND</title>
+    <!-- Open Graph Meta Tags -->
+    <meta content="Nonton Bareng Indonesia Vs Bahrain di Kualifikasi Piala Dunia 2026" property="og:title"/>
+    <meta content="Selasa, 25 Maret 2025 ⏰ 21.30 WITA - Selesai 📍 Lokasi: Area Cafe SUKE HIGHLAND. Bioskop NOBAR" property="og:description"/>
+    <meta content="https://cdn1-production-images-kly.akamaized.net/Pg74NPs_T0G0S95pykjCD51acek=/640x640/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/5159214/original/045111000_1741694493-Timnas_Indonesia_-_Ilustrasi_Psywar_Timnas_Indonesia_Vs_Bahrain_copy.jpg" property="og:image"/>
+    <meta content="https://sukehighland.github.io/" property="og:url"/>
+    <meta content="website" property="og:type"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <script>
+        // Countdown Timer Script
+        document.addEventListener('DOMContentLoaded', function() {
+            const countdownElement = document.getElementById('countdown');
+            const eventDate = new Date('March 25, 2025 21:30:00').getTime();
+
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const distance = eventDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    countdownElement.innerHTML = "Acara Sedang Berlangsung";
+                }
+            };
+
+            const interval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        });
+
+        // Mobile Menu Toggle Script
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const menu = document.getElementById('menu');
+
+            menuToggle.addEventListener('click', function() {
+                menu.classList.toggle('hidden');
+            });
+        });
+    </script>
+    <style>
+        :root {
+            --win-blue: #0078D7;
+            --win-dark: #201F1E;
+            --win-light: #F3F2F1;
+            --win-accent: #0078D7;
+            --win-gray: #E6E6E6;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--win-light);
+            color: #333;
+        }
+        
+        .sticky {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        
+        .win-titlebar {
+            background-color: var(--win-dark);
+            color: white;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        
+        .win-title {
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .win-controls {
+            display: flex;
+        }
+        
+        .win-btn {
+            width: 46px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .win-btn:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .win-btn.close:hover {
+            background-color: #E81123;
+        }
+        
+        .win-card {
+            background-color: white;
+            border-radius: 2px;
+            box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,.132), 0 0.3px 0.9px 0 rgba(0,0,0,.108);
+            border: 1px solid rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .win-card:hover {
+            box-shadow: 0 3.2px 7.2px 0 rgba(0,0,0,.132), 0 0.6px 1.8px 0 rgba(0,0,0,.108);
+        }
+        
+        .win-btn-primary {
+            background-color: var(--win-blue);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 2px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .win-btn-primary:hover {
+            background-color: #106EBE;
+        }
+        
+        .win-section-title {
+            font-weight: 600;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--win-dark);
+        }
+        
+        .win-nav-item {
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+        
+        .win-nav-item:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+        
+        .win-nav-item.active {
+            background-color: rgba(0,120,215,0.1);
+            color: var(--win-blue);
+        }
+        
+        .win-input {
+            padding: 8px;
+            border: 1px solid rgba(0,0,0,0.2);
+            border-radius: 2px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        .win-input:focus {
+            outline: none;
+            border-color: var(--win-blue);
+        }
+        
+        .win-tile {
+            width: 150px;
+            height: 150px;
+            background-color: var(--win-blue);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .win-tile:hover {
+            transform: scale(1.05);
+        }
+        
+        .win-tile i {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .win-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .win-acrylic {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+        }
+        
+        .win-hero {
+            background-image: url('img/bg-hero.png');
+            background-size: cover;
+            background-position: center;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .win-hero-content {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            padding: 40px;
+            border-radius: 2px;
+            max-width: 800px;
+            text-align: center;
+        }
+        
+        .win-footer {
+            background-color: var(--win-dark);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+    </style>
 </head>
-
 <body>
-  <!-- Desktop Icons -->
-  <div class="desktop-icons">
-    <div class="desktop-icon">
-      <i class="fas fa-desktop"></i>
-      <span>This PC</span>
-    </div>
-    <div class="desktop-icon">
-      <i class="fas fa-folder"></i>
-      <span>Documents</span>
-    </div>
-    <div class="desktop-icon">
-      <i class="fas fa-coffee"></i>
-      <span>SUKE HIGHLAND</span>
-    </div>
-  </div>
-
-  <!-- Desktop Area -->
-  <div class="desktop">
-    <!-- Main Window -->
-    <div class="window">
-      <!-- Window Header (Title Bar) -->
-      <div class="window-header">
-        <i class="fas fa-coffee"></i>
-        <div class="window-title">SUKE HIGHLAND - Microsoft Edge</div>
-        <div class="window-controls">
-          <div class="window-control minimize">
-            <i class="fas fa-minus"></i>
-          </div>
-          <div class="window-control maximize">
-            <i class="fas fa-expand"></i>
-          </div>
-          <div class="window-control close">
-            <i class="fas fa-times"></i>
-          </div>
+    <!-- Windows-style Title Bar -->
+    <div class="win-titlebar sticky">
+        <div class="win-title">SUKE HIGHLAND</div>
+        <div class="win-controls">
+            <div class="win-btn"><i class="fas fa-window-minimize"></i></div>
+            <div class="win-btn"><i class="fas fa-window-maximize"></i></div>
+            <div class="win-btn close"><i class="fas fa-times"></i></div>
         </div>
-      </div>
-
-      <!-- Window Menu Bar -->
-      <div class="window-menu">
-        <div class="menu-item">File</div>
-        <div class="menu-item">Edit</div>
-        <div class="menu-item">View</div>
-        <div class="menu-item">Favorites</div>
-        <div class="menu-item">Help</div>
-      </div>
-
-      <!-- Window Content -->
-      <div class="window-content">
-        <!-- About Section -->
-        <div class="content-section" id="tentang">
-          <h2>Tentang Kami</h2>
-          <p>Halo sobat SUKE HIGHLAND</p>
-          <p>Selamat datang kembali</p>
-          <p>Disini, sobat SUKE HIGHLAND dapat menikmati fitur kami, mulai dari berbagai macam makanan & minuman yang teridiri dari berbagai Stand, Meja Reservasi untuk acara Group, LIVE Music serta WI-FI gratis untuk pelanggan SUKE Highland.</p>
-          
-          <div class="section-grid">
-            <div class="card">
-              <h3>Misi Kami</h3>
-              <p>Memberikan pengalaman yang nyaman dalam menikmati makanan dan minuman, bersantai, bersosialisasi, dan nonton bareng.</p>
-              <img src="/api/placeholder/300/200" alt="Misi Kami"/>
-            </div>
-            <div class="card">
-              <h3>Visi Kami</h3>
-              <p>Menjadi salah satu cafe yang dikenal karena suasana yang nyaman dan layanan yang baik.</p>
-              <img src="/api/placeholder/300/200" alt="Visi Kami"/>
-            </div>
-            <div class="card">
-              <h3>Nilai Kami</h3>
-              <p>Kenyamanan dan keunggulan.</p>
-              <img src="/api/placeholder/300/200" alt="Nilai Kami"/>
-            </div>
-          </div>
-        </div>
-
-        <!-- Services Section -->
-        <div class="content-section" id="layanan">
-          <h2>Layanan Kami</h2>
-          <div class="section-grid">
-            <div class="card">
-              <i class="fas fa-utensils"></i>
-              <h3>Pesan Makanan</h3>
-              <p>Pesan makanan lezat dari menu kami yang beragam.</p>
-            </div>
-            <div class="card">
-              <i class="fas fa-coffee"></i>
-              <h3>Pesan Minuman</h3>
-              <p>Nikmati berbagai minuman segar.</p>
-            </div>
-            <div class="card">
-              <i class="fas fa-wifi"></i>
-              <h3>Internet Gratis</h3>
-              <p>Akses internet gratis untuk semua pelanggan kami.</p>
-            </div>
-            <div class="card">
-              <i class="fas fa-parking"></i>
-              <h3>Parkiran Gratis</h3>
-              <p>Parkir gratis tersedia untuk semua pelanggan kami.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Brands Section -->
-        <div class="content-section" id="brand">
-          <h2>Support By</h2>
-          <div class="section-grid">
-            <div class="card">
-              <img src="/api/placeholder/200/100" alt="Logo Bir Bintang"/>
-            </div>
-            <div class="card">
-              <img src="/api/placeholder/200/100" alt="Logo Gudang Garam"/>
-            </div>
-            <div class="card">
-              <img src="/api/placeholder/200/100" alt="Logo Bir Singa Raja"/>
-            </div>
-          </div>
-        </div>
-
-        <!-- Contact Section -->
-        <div class="content-section" id="kontak">
-          <h2>Hubungi Kami</h2>
-          <p>Hubungi kami untuk mempelajari lebih lanjut tentang layanan kami.</p>
-          <div class="contact-form">
-            <input type="text" placeholder="Nama Anda">
-            <input type="email" placeholder="Email Anda">
-            <textarea placeholder="Pesan Anda" rows="4"></textarea>
-            <button type="submit">Kirim Pesan</button>
-          </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="content-section">
-          <p>Copyright SUKE HIGHLAND | Design By Siber Digital Toraja Utara</p>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <!-- Windows 10 Taskbar -->
-  <div class="taskbar">
-    <div class="start-button">
-      <i class="fab fa-windows"></i>
-    </div>
-    <div class="taskbar-icons">
-      <div class="taskbar-icon">
-        <i class="fas fa-search"></i>
-      </div>
-      <div class="taskbar-icon">
-        <i class="fab fa-edge"></i>
-      </div>
-      <div class="taskbar-icon">
-        <i class="fas fa-folder"></i>
-      </div>
-      <div class="taskbar-icon">
-        <i class="fas fa-store"></i>
-      </div>
-    </div>
-    <div class="taskbar-right">
-      <div class="time-date">
-        <span id="current-time">29/03/2025</span>
-      </div>
-      <div class="taskbar-icon">
-        <i class="fas fa-wifi"></i>
-      </div>
-      <div class="taskbar-icon">
-        <i class="fas fa-volume-up"></i>
-      </div>
-    </div>
-  </div>
+    <!-- Navigation -->
+    <nav class="bg-white p-4 sticky" style="top: 32px; z-index: 40;">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="hidden md:flex space-x-2">
+                <a class="win-nav-item" href="#beranda">Beranda</a>
+                <a class="win-nav-item" href="#tentang">Tentang</a>
+                <a class="win-nav-item" href="#layanan">Layanan</a>
+                <a class="win-nav-item" href="#brand">Brand</a>
+                <a class="win-nav-item" href="#kontak">Kontak</a>
+            </div>
+            <div class="md:hidden relative">
+                <button class="win-btn" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="win-card absolute right-0 mt-2 w-48 hidden" id="menu">
+                    <a class="block win-nav-item" href="#beranda">Beranda</a>
+                    <a class="block win-nav-item" href="#tentang">Tentang</a>
+                    <a class="block win-nav-item" href="#layanan">Layanan</a>
+                    <a class="block win-nav-item" href="#brand">Brand</a>
+                    <a class="block win-nav-item" href="#kontak">Kontak</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-  <script>
-    // Update the time
-    function updateTime() {
-      const now = new Date();
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      document.getElementById('current-time').textContent = `${hours}:${minutes}`;
-    }
-    
-    // Update time on load and every minute
-    updateTime();
-    setInterval(updateTime, 60000);
-    
-    // Window controls (just for UI, not functional)
-    document.querySelector('.close').addEventListener('click', function() {
-      alert('Window close clicked (This would normally close the window)');
-    });
-    
-    document.querySelector('.start-button').addEventListener('click', function() {
-      alert('Start button clicked (This would normally open the Start menu)');
-    });
-  </script>
+    <!-- Hero Section -->
+    <section class="win-hero" id="beranda">
+        <div class="win-hero-content win-acrylic">
+            <h1 class="text-3xl md:text-4xl font-bold mb-6">SUKE HIGHLAND</h1>
+            <p class="text-lg mb-6">Tempat nongkrong nyaman dengan pemandangan indah di Toraja Utara</p>
+            <button class="win-btn-primary">Lihat Menu</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 bg-white" id="tentang">
+        <div class="container mx-auto px-4">
+            <h2 class="win-section-title">Tentang Kami</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="win-card p-6">
+                    <h3 class="text-xl font-semibold mb-4">Misi Kami</h3>
+                    <p class="mb-4">Memberikan pengalaman yang nyaman dalam menikmati makanan dan minuman, bersantai, bersosialisasi, dan nonton bareng.</p>
+                    <img src="img/sh1.jpg" alt="Suasana SUKE HIGHLAND" class="w-full h-48 object-cover rounded">
+                </div>
+                <div class="win-card p-6">
+                    <h3 class="text-xl font-semibold mb-4">Visi Kami</h3>
+                    <p class="mb-4">Menjadi salah satu cafe yang dikenal karena suasana yang nyaman dan layanan yang baik.</p>
+                    <img src="img/sh2.png" alt="Suasana SUKE HIGHLAND" class="w-full h-48 object-cover rounded">
+                </div>
+                <div class="win-card p-6">
+                    <h3 class="text-xl font-semibold mb-4">Nilai Kami</h3>
+                    <p class="mb-4">Kenyamanan dan keunggulan dalam setiap layanan yang kami berikan.</p>
+                    <img src="img/sh3.png" alt="Suasana SUKE HIGHLAND" class="w-full h-48 object-cover rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-20 bg-gray-100" id="layanan">
+        <div class="container mx-auto px-4">
+            <h2 class="win-section-title">Layanan Kami</h2>
+            <div class="win-grid">
+                <div class="win-tile">
+                    <i class="fas fa-utensils"></i>
+                    <span>Makanan</span>
+                </div>
+                <div class="win-tile" style="background-color: #107C10;">
+                    <i class="fas fa-coffee"></i>
+                    <span>Minuman</span>
+                </div>
+                <div class="win-tile" style="background-color: #5C2D91;">
+                    <i class="fas fa-wifi"></i>
+                    <span>WiFi Gratis</span>
+                </div>
+                <div class="win-tile" style="background-color: #F25022;">
+                    <i class="fas fa-parking"></i>
+                    <span>Parkir Gratis</span>
+                </div>
+                <div class="win-tile" style="background-color: #FFB900;">
+                    <i class="fas fa-music"></i>
+                    <span>Live Music</span>
+                </div>
+                <div class="win-tile" style="background-color: #00A4EF;">
+                    <i class="fas fa-tv"></i>
+                    <span>Nobar</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="py-20 bg-white" id="brand">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="win-section-title">Support By</h2>
+            <div class="flex flex-wrap justify-center gap-8">
+                <div class="win-card p-4 flex items-center justify-center" style="width: 200px; height: 100px;">
+                    <img src="img/bintang.jpeg" alt="Bir Bintang" class="max-h-full max-w-full">
+                </div>
+                <div class="win-card p-4 flex items-center justify-center" style="width: 200px; height: 100px;">
+                    <img src="img/gg.jpeg" alt="Gudang Garam" class="max-h-full max-w-full">
+                </div>
+                <div class="win-card p-4 flex items-center justify-center" style="width: 200px; height: 100px;">
+                    <img src="img/singaraja.jpeg" alt="Bir Singa Raja" class="max-h-full max-w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-20 bg-gray-100" id="kontak">
+        <div class="container mx-auto px-4 max-w-2xl">
+            <h2 class="win-section-title">Hubungi Kami</h2>
+            <div class="win-card p-8">
+                <form>
+                    <div class="mb-4">
+                        <label class="block mb-2 font-medium">Nama Anda</label>
+                        <input type="text" class="win-input w-full" placeholder="Nama Anda">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-2 font-medium">Email Anda</label>
+                        <input type="email" class="win-input w-full" placeholder="Email Anda">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block mb-2 font-medium">Pesan Anda</label>
+                        <textarea class="win-input w-full" rows="4" placeholder="Pesan Anda"></textarea>
+                    </div>
+                    <button type="submit" class="win-btn-primary">Kirim Pesan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="win-footer">
+        <p>Copyright SUKE HIGHLAND | Design By Siber Digital Toraja Utara</p>
+    </footer>
 </body>
 </html>
