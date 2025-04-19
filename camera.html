@@ -157,6 +157,18 @@
     navigator.geolocation.watchPosition(success, error, options);
   }
 
+  // Helper function to truncate text with ellipsis if too long
+  function truncateText(ctx, text, maxWidth) {
+    if (ctx.measureText(text).width <= maxWidth) {
+      return text;
+    }
+    let truncated = text;
+    while (ctx.measureText(truncated + '...').width > maxWidth && truncated.length > 0) {
+      truncated = truncated.slice(0, -1);
+    }
+    return truncated + '...';
+  }
+
   // Capture photo with GPS overlay
   function capturePhoto() {
     if (!currentCoords) {
@@ -174,8 +186,11 @@
     ctx.drawImage(video, 0, 0, width, height);
 
     // Draw location name or GPS coordinates on bottom-left corner
-    const text = currentLocationName ? currentLocationName : `Lat: ${currentCoords.lat}, Lon: ${currentCoords.lon}`;
+    const rawText = currentLocationName ? currentLocationName : `Lat: ${currentCoords.lat}, Lon: ${currentCoords.lon}`;
     ctx.font = `${Math.floor(height / 20)}px Arial`;
+    const maxTextWidth = width * 0.8; // max 80% of photo width
+    const text = truncateText(ctx, rawText, maxTextWidth);
+
     ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
     const textWidth = ctx.measureText(text).width;
     const padding = 10;
@@ -186,7 +201,7 @@
 
     // Set photo src to canvas data URL
     const dataUrl = canvas.toDataURL('image/png');
-    photo.src = dataUrl;
+    // photo.src = dataUrl; // Do not display photo preview after capture
 
     // Trigger download to save photo
     const link = document.createElement('a');
