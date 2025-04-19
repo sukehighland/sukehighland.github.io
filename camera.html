@@ -129,11 +129,52 @@
             getCameraStream();
         });
 
+function adjustOrientation() {
+    const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+    if (isPortrait) {
+        video.style.width = "auto";
+        video.style.height = "100%";
+        locationDiv.style.top = "10px";
+        locationDiv.style.left = "10px";
+        locationDiv.style.right = "auto";
+        locationDiv.style.bottom = "auto";
+        document.getElementById('controls').style.bottom = "20px";
+        document.getElementById('controls').style.top = "auto";
+    } else {
+        video.style.width = "100%";
+        video.style.height = "auto";
+        locationDiv.style.top = "10px";
+        locationDiv.style.left = "auto";
+        locationDiv.style.right = "10px";
+        locationDiv.style.bottom = "auto";
+        document.getElementById('controls').style.top = "20px";
+        document.getElementById('controls').style.bottom = "auto";
+    }
+}
+
+window.addEventListener('resize', adjustOrientation);
+window.addEventListener('orientationchange', adjustOrientation);
+adjustOrientation();
+
 takePhotoBtn.addEventListener('click', () => {
     const context = canvas.getContext('2d');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+
+    // Sesuaikan ukuran canvas dengan orientasi perangkat
+    if (isPortrait) {
+        canvas.width = video.videoHeight;
+        canvas.height = video.videoWidth;
+        // Rotasi canvas untuk portrait
+        context.save();
+        context.translate(canvas.width / 2, canvas.height / 2);
+        context.rotate(-90 * Math.PI / 180);
+        context.drawImage(video, -canvas.height / 2, -canvas.width / 2, canvas.height, canvas.width);
+        context.restore();
+    } else {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    }
 
     // Tambahkan teks lokasi dan koordinat di pojok kiri atas foto
     context.font = '20px Arial';
@@ -152,6 +193,14 @@ takePhotoBtn.addEventListener('click', () => {
 
     const dataUrl = canvas.toDataURL('image/png');
     thumbnail.src = dataUrl;
+
+    // Simpan foto secara otomatis ke perangkat
+    const link = document.createElement('a');
+    link.href = dataUrl;
+    link.download = `foto_${new Date().toISOString().replace(/[:.]/g, '-')}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 });
 
         // Fungsi untuk mendapatkan lokasi perangkat
