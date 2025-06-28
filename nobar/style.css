@@ -1,0 +1,192 @@
+/* Pengaturan Dasar & Tampilan Mobile */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #000;
+    font-family: sans-serif;
+}
+
+.slideshow-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Pengaturan untuk setiap slide */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    /* Transisi pudar (fade) saat pergantian slide */
+    transition: opacity 1.5s ease-in-out;
+}
+
+/* Kelas 'active' untuk menampilkan slide */
+.slide.active {
+    opacity: 1;
+}
+
+/* Latar belakang gambar untuk setiap slide */
+#slide1 {
+    background-image: url('poster-utama.jpg');
+}
+
+#slide2 {
+    background-image: url('poster-alternatif.webp');
+}
+
+#slide3 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#slide4 {
+    background-image: url('https://sukehighland.github.io/img/sh2.png');
+}
+
+
+/* --- Penyesuaian untuk Slide 5 (Logo & Credit) --- */
+
+/* 1. Membuat #slide5 menjadi container flexbox untuk memposisikan konten di tengah */
+#slide5 {
+    display: flex;
+    flex-direction: column; /* PENTING: Menumpuk item secara vertikal (logo di atas, teks di bawah) */
+    justify-content: center; /* Tengah secara vertikal */
+    align-items: center;   /* Tengah secara horizontal */
+}
+
+/* 2. Mengatur ukuran dasar logo */
+.logo-neon {
+    max-width: 50vw;
+    max-height: 50vh;
+    width: auto;
+    height: auto;
+}
+
+/* 3. Menerapkan animasi saat kelas 'glowing' ditambahkan oleh JavaScript */
+.logo-neon.glowing {
+    animation: neon-glow 1.5s ease-in-out infinite;
+}
+
+/* --- ATURAN BARU UNTUK CREDIT YANG HILANG --- */
+
+/* 4. Pengaturan gaya untuk teks credit "Siber Digital" */
+.creator-credit {
+    font-family: 'Courier New', Courier, monospace; /* Font khas 'hacker' */
+    font-size: 1.8em;
+    color: #ccffcc; /* Warna hijau pucat */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 25px; /* Jarak dari logo di atasnya */
+    opacity: 0; /* Awalnya transparan, muncul dengan animasi */
+}
+
+/* 5. Menerapkan animasi hacker flicker saat slide 5 aktif */
+#slide5.active .creator-credit {
+    opacity: 1; /* Membuat teks terlihat */
+    animation: hacker-flicker 2s linear infinite;
+    transition: opacity 1s ease-in 0.5s; /* Efek muncul setelah logo sedikit */
+}
+
+/* --- AKHIR ATURAN BARU --- */
+
+
+/* Animasi 1: Kibaran Bendera */
+#slide1.active {
+    animation: flag-wave 8s linear infinite;
+}
+
+@keyframes flag-wave {
+    0% { transform: scale(1.02) skewX(-2deg); }
+    50% { transform: scale(1) skewX(2deg); }
+    100% { transform: scale(1.02) skewX(-2deg); }
+}
+
+/* Animasi 2: Zoom & Pan Peta */
+#slide3.active img {
+    animation: pan-zoom 10s ease-out forwards;
+}
+
+@keyframes pan-zoom {
+    0% { transform: scale(1.1) translate(0, 0); }
+    100% { transform: scale(1.3) translate(-10px, 5px); }
+}
+
+/* Animasi 3: Detak bayangan untuk logo */
+@keyframes neon-glow {
+    0% {
+        filter: drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px #d90429);
+    }
+    50% {
+        filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 45px #d90429);
+    }
+    100% {
+        filter: drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px #d90429);
+    }
+}
+
+/* --- KEYFRAME BARU UNTUK CREDIT YANG HILANG --- */
+/* Animasi 4: Flicker neon hijau untuk teks credit */
+@keyframes hacker-flicker {
+    0%, 100% {
+        text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 20px #0f0;
+    }
+    25% {
+        text-shadow: none;
+    }
+    50% {
+        text-shadow: 0 0 7px #0f0, 0 0 15px #0f0;
+    }
+    75% {
+        text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0, 0 0 40px #0f0;
+    }
+}
+/* --- AKHIR KEYFRAME BARU --- */
+
+
+/* Tombol Mulai */
+#start-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+#start-btn {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+    background-color: #d90429; /* Warna merah yang kuat */
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+}
+
+/* Animasi denyut untuk tombol */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
