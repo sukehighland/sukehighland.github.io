@@ -30,6 +30,7 @@
             background-color: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 5px;
+            text-align: center; /* Tengahkan teks Coming Soon */
         }
     </style>
 </head>
@@ -94,6 +95,11 @@
     </div>
     <!-- Hero Content Here -->
 </section>
+
+<!-- Event Section (Initially Coming Soon) -->
+<div id="event-container">
+    <p>Coming Soon</p>
+</div>
 
 <!-- About Section -->
 <section class="py-20 bg-gray-100" id="tentang">
@@ -229,19 +235,21 @@
                     const eventSection = eventContent.querySelector('#event');
 
                     // Jika elemen "event" ditemukan, tambahkan ke halaman Anda
-                    if (eventSection) {
-                        const eventContainer = document.createElement('div');
-                        eventContainer.id = 'event-container';
-                        eventContainer.appendChild(eventSection);
+                    const eventContainer = document.getElementById('event-container');
+                    eventContainer.innerHTML = ''; // Kosongkan container sebelumnya
 
-                        // Sisipkan konten event setelah bagian Hero
-                        const heroSection = document.querySelector('section');
-                        heroSection.parentNode.insertBefore(eventContainer, heroSection.nextSibling);
+                    if (eventSection) {
+                        eventContainer.appendChild(eventSection);
                     } else {
+                        eventContainer.innerHTML = '<p>Coming Soon</p>'; // Tampilkan Coming Soon
                         console.warn('Bagian #event tidak ditemukan di https://sukehighland.github.io/');
                     }
                 })
-                .catch(error => console.error('Gagal memuat konten event:', error));
+                .catch(error => {
+                    console.error('Gagal memuat konten event:', error);
+                    const eventContainer = document.getElementById('event-container');
+                    eventContainer.innerHTML = '<p>Coming Soon</p>'; // Tampilkan Coming Soon jika error
+                });
         }
 
         // Periksa apakah halaman diakses dengan hash #event
