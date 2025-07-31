@@ -1,14 +1,27 @@
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>SUKE HIGHLAND</title>
-    <!-- Open Graph Meta Tags -->
-    <meta content="Nonton Bareng Indonesia Vs Bahrain di Kualifikasi Piala Dunia 2026" property="og:title"/>
-    <meta content="Selasa, 25 Maret 2025 ⏰ 21.30 WITA - Selesai 📍 Lokasi: Area Cafe SUKE HIGHLAND. Bioskop NOBAR" property="og:description"/>
-    <meta content="https://cdn1-production-images-kly.akamaized.net/Pg74NPs_T0G0S95pykjCD51acek=/640x640/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/5159214/original/045111000_1741694493-Timnas_Indonesia_-_Ilustrasi_Psywar_Timnas_Indonesia_Vs_Bahrain_copy.jpg" property="og:image"/>
-    <meta content="https://sukehighland.github.io/" property="og:url"/>
-    <meta content="website" property="og:type"/>
+    <title>Festival 80 Tahun Indonesia Merdeka Di Suke Highland</title>
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="Festival 80 Tahun Indonesia Merdeka Di Suke Highland"/>
+    <meta property="og:description" content="Rayakan kemerdekaan Indonesia ke-80 bersama kami di SUKE HIGHLAND dengan berbagai acara spesial dan hiburan menarik!"/>
+    <meta property="og:image" content="https://sukehighland.github.io/img/festival-poster.jpg"/>
+    <meta property="og:url" content="https://sukehighland.github.io/#event"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:video" content="https://sukehighland.github.io/Suke_Festival_Merdeka.mp4"/>
+    <meta property="og:video:type" content="video/mp4"/>
+    <meta property="og:video:width" content="1280"/>
+    <meta property="og:video:height" content="720"/>
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Festival 80 Tahun Indonesia Merdeka Di Suke Highland">
+    <meta name="twitter:description" content="Rayakan kemerdekaan Indonesia ke-80 bersama kami di SUKE HIGHLAND dengan berbagai acara spesial dan hiburan menarik!">
+    <meta name="twitter:image" content="https://sukehighland.github.io/img/festival-poster.jpg">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
@@ -24,189 +37,249 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        /* Style untuk Event Section */
-        #event {
-            padding: 20px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            text-align: center;
-            margin-top: 20px;
+        /* Video Responsive Styles */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            background-color: #000;
         }
-
-        /* Style untuk menyesuaikan ukuran video */
-        #event-video {
-            max-width: 100%; /* Lebar maksimum 100% dari container */
-            height: auto;      /* Tinggi menyesuaikan proporsi */
-            display: block;     /* Hilangkan ruang kosong di bawah video */
-            margin: 0 auto;    /* Tengahkan video secara horizontal */
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Animation for Hero Section */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .hero-content {
+            animation: fadeIn 1.5s ease-in-out;
         }
     </style>
 </head>
-<body class="font-roboto">
+<body class="font-roboto bg-gray-50">
 
 <!-- Navbar -->
-<nav class="bg-gray-800 p-4 sticky" id="navbar">
+<nav class="bg-gray-800 p-4 sticky top-0 shadow-lg" id="navbar">
     <div class="container mx-auto flex justify-between items-center">
-        <a class="text-white text-2xl font-bold" href="#">SUKE HIGHLAND</a>
+        <a class="text-white text-2xl font-bold hover:text-yellow-300 transition duration-300" href="#">
+            <span class="gradient-text">SUKE HIGHLAND</span>
+        </a>
         <div class="md:hidden relative">
             <button class="text-white focus:outline-none" id="menu-toggle">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
             <ul class="absolute right-0 mt-2 w-48 bg-gray-800 text-white rounded-lg shadow-lg hidden" id="menu">
                 <li class="border-b border-gray-700">
-                    <a class="block px-4 py-2 hover:bg-gray-700" href="#event">Event</a>
+                    <a class="block px-4 py-2 hover:bg-gray-700 hover:text-yellow-300 transition duration-300" href="#event">Event</a>
                 </li>
                 <li class="border-b border-gray-700">
-                    <a class="block px-4 py-2 hover:bg-gray-700" href="#beranda">Beranda</a>
+                    <a class="block px-4 py-2 hover:bg-gray-700 hover:text-yellow-300 transition duration-300" href="#beranda">Beranda</a>
                 </li>
                 <li class="border-b border-gray-700">
-                    <a class="block px-4 py-2 hover:bg-gray-700" href="#tentang">Tentang</a>
+                    <a class="block px-4 py-2 hover:bg-gray-700 hover:text-yellow-300 transition duration-300" href="#tentang">Tentang</a>
                 </li>
                 <li class="border-b border-gray-700">
-                    <a class="block px-4 py-2 hover:bg-gray-700" href="#layanan">Layanan</a>
+                    <a class="block px-4 py-2 hover:bg-gray-700 hover:text-yellow-300 transition duration-300" href="#layanan">Layanan</a>
                 </li>
                 <li class="border-b border-gray-700">
-                    <a class="block px-4 py-2 hover:bg-gray-700" href="#brand">Brand</a>
+                    <a class="block px-4 py-2 hover:bg-gray-700 hover:text-yellow-300 transition duration-300" href="#brand">Brand</a>
                 </li>
                 <li>
-                    <a class="block px-4 py-2 hover:bg-gray-700" href="#kontak">Kontak</a>
+                    <a class="block px-4 py-2 hover:bg-gray-700 hover:text-yellow-300 transition duration-300" href="#kontak">Kontak</a>
                 </li>
             </ul>
         </div>
-        <ul class="hidden md:flex space-x-4 text-white">
+        <ul class="hidden md:flex space-x-6 text-white">
             <li>
-                <a class="hover:text-gray-400" href="#event">Event</a>
+                <a class="hover:text-yellow-300 transition duration-300" href="#event">Event</a>
             </li>
             <li>
-                <a class="hover:text-gray-400" href="#beranda">Beranda</a>
+                <a class="hover:text-yellow-300 transition duration-300" href="#beranda">Beranda</a>
             </li>
             <li>
-                <a class="hover:text-gray-400" href="#tentang">Tentang</a>
+                <a class="hover:text-yellow-300 transition duration-300" href="#tentang">Tentang</a>
             </li>
             <li>
-                <a class="hover:text-gray-400" href="#layanan">Layanan</a>
+                <a class="hover:text-yellow-300 transition duration-300" href="#layanan">Layanan</a>
             </li>
             <li>
-                <a class="hover:text-gray-400" href="#brand">Brand</a>
+                <a class="hover:text-yellow-300 transition duration-300" href="#brand">Brand</a>
             </li>
             <li>
-                <a class="hover:text-gray-400" href="#kontak">Kontak</a>
+                <a class="hover:text-yellow-300 transition duration-300" href="#kontak">Kontak</a>
             </li>
         </ul>
     </div>
 </nav>
 
 <!-- Hero Section -->
-<section class="relative min-h-screen" id="hero-section">
-    <div class="absolute inset-0 z-0">
-        <div class="w-full h-full bg-cover bg-center" style="background-image: url('img/bg-hero.png')"></div>
+<section class="relative min-h-screen flex items-center justify-center" id="hero-section">
+    <div class="absolute inset-0 z-0 bg-black/50">
+        <div class="w-full h-full bg-cover bg-center" style="background-image: url('img/bg-hero.jpg')"></div>
     </div>
-    <!-- Hero Content Here -->
+    <div class="container mx-auto px-4 z-10 text-center hero-content">
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Festival 80 Tahun Indonesia Merdeka</h1>
+        <p class="text-xl md:text-2xl text-yellow-300 mb-8">SUKE HIGHLAND Anniversary Celebration</p>
+        <a href="#event" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block">
+            Lihat Acara
+        </a>
+    </div>
 </section>
 
 <!-- Event Section -->
 <section id="event" class="py-20 bg-white">
-    <div class="container mx-auto text-center px-4">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Suke Festival Merdeka</h2>
-        <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-            <video id="event-video" controls>
-                <source src="Suke_Festival_Merdeka.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-2 text-gray-800">Festival 80 Tahun Indonesia Merdeka</h2>
+            <h3 class="text-2xl text-yellow-600 mb-6">SUKE HIGHLAND Anniversary</h3>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-6">
+                Rayakan kemerdekaan Indonesia yang ke-80 dengan berbagai acara spesial dan hiburan menarik di SUKE HIGHLAND.
+            </p>
+            <a href="https://su.ekhighiand.github.io/record" class="text-blue-500 hover:text-blue-700 hover:underline transition duration-300 inline-block mb-8">
+                Lihat Rekaman Lengkap <i class="fas fa-external-link-alt ml-2"></i>
+            </a>
+        </div>
+        
+        <div class="flex justify-center">
+            <div class="w-full max-w-4xl bg-gray-100 p-4 md:p-6 rounded-lg shadow-xl">
+                <!-- Video Container -->
+                <div class="video-container shadow-2xl">
+                    <video id="event-video" controls poster="img/festival-poster.jpg">
+                        <source src="Suke_Festival_Merdeka.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                
+                <div class="mt-6 text-center">
+                    <button onclick="document.getElementById('event-video').play()" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-6 rounded-full text-sm transition duration-300 mr-3">
+                        <i class="fas fa-play mr-2"></i> Putar Video
+                    </button>
+                    <a href="#kontak" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-6 rounded-full text-sm transition duration-300">
+                        <i class="fas fa-info-circle mr-2"></i> Info Lengkap
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- Beranda Section -->
 <section id="beranda" class="py-20 bg-gray-100">
-    <div class="container mx-auto text-center px-4">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Selamat Datang di SUKE HIGHLAND</h2>
-        <p class="text-lg mb-6">
-            Nikmati pengalaman bersantai terbaik dengan berbagai layanan kami:
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white p-6 rounded-lg shadow">
-                <i class="fas fa-utensils text-4xl text-blue-500 mb-4"></i>
-                <h3 class="text-xl font-bold mb-2">Makanan Lezat</h3>
-                <p>Menu makanan berkualitas dengan cita rasa tinggi</p>
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Selamat Datang di SUKE HIGHLAND</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Nikmati pengalaman bersantai terbaik dengan berbagai layanan unggulan kami yang akan membuat waktu berkualitas Anda semakin berkesan.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                <div class="text-center mb-4">
+                    <i class="fas fa-utensils text-5xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Makanan Lezat</h3>
+                    <p class="text-gray-600">Menu makanan berkualitas dengan cita rasa tinggi dari berbagai stand kuliner pilihan.</p>
+                </div>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow">
-                <i class="fas fa-music text-4xl text-blue-500 mb-4"></i>
-                <h3 class="text-xl font-bold mb-2">Live Music</h3>
-                <p>Hiburan musik langsung di tempat kami</p>
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                <div class="text-center mb-4">
+                    <i class="fas fa-music text-5xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Live Music</h3>
+                    <p class="text-gray-600">Hiburan musik langsung dengan berbagai genre yang akan menemani waktu santai Anda.</p>
+                </div>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow">
-                <i class="fas fa-wifi text-4xl text-blue-500 mb-4"></i>
-                <h3 class="text-xl font-bold mb-2">WiFi Gratis</h3>
-                <p>Akses internet cepat untuk pelanggan</p>
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                <div class="text-center mb-4">
+                    <i class="fas fa-wifi text-5xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">WiFi Gratis</h3>
+                    <p class="text-gray-600">Akses internet cepat untuk semua pelanggan kami selama berada di lokasi.</p>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- About Section -->
-<section class="py-20 bg-gray-100" id="tentang">
-    <div class="container mx-auto text-center px-4">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Tentang Kami</h2>
-        <p class="text-lg mb-6">
-            Halo sobat SUKE HIGHLAND
-            <br/><br/>
-            Selamat datang kembali
-            <br/>
-            Disini, sobat SUKE HIGHLAND dapat menikmati fitur kami, mulai dari berbagai macam makanan & minuman yang teridiri dari berbagai Stand, Meja Reservasi untuk acara Group, LIVE Music serta WI-FI gratis untuk pelanggan SUKE Highland.
-        </p>
+<section id="tentang" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Tentang Kami</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Halo sobat SUKE HIGHLAND! Selamat datang kembali di tempat berkumpulnya komunitas pencinta suasana santai dengan berbagai fasilitas premium.
+            </p>
+        </div>
+        
         <div class="flex flex-wrap justify-center">
             <div class="w-full md:w-1/3 p-4">
-                <h3 class="text-2xl font-bold mb-2">Misi Kami</h3>
-                <p>Memberikan pengalaman yang nyaman dalam menikmati makanan dan minuman, bersantai, bersosialisasi, dan nonton bareng.</p>
-                <img alt="Anggota tim bekerja pada strategi SEO" class="rounded-lg mt-4" src="img/sh1.jpg" style="width: 300px; height: 200px;"/>
+                <div class="bg-gray-100 p-6 rounded-lg shadow-lg h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800 text-center">Misi Kami</h3>
+                    <p class="text-gray-600 mb-4">Memberikan pengalaman yang nyaman dalam menikmati makanan dan minuman, bersantai, bersosialisasi, dan berbagai acara komunitas.</p>
+                    <img alt="Suasana SUKE HIGHLAND" class="rounded-lg w-full h-48 object-cover" src="img/sh1.jpg"/>
+                </div>
             </div>
             <div class="w-full md:w-1/3 p-4">
-                <h3 class="text-2xl font-bold mb-2">Visi Kami</h3>
-                <p>Menjadi salah satu cafe yang dikenal karena suasana yang nyaman dan layanan yang baik.</p>
-                <img alt="Anggota tim menganalisis data SEO" class="rounded-lg mt-4" src="img/sh2.png" style="width: 300px; height: 200px;"/>
+                <div class="bg-gray-100 p-6 rounded-lg shadow-lg h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800 text-center">Visi Kami</h3>
+                    <p class="text-gray-600 mb-4">Menjadi destinasi utama bagi komunitas pencinta suasana santai dengan konsep yang unik dan layanan terbaik.</p>
+                    <img alt="Area SUKE HIGHLAND" class="rounded-lg w-full h-48 object-cover" src="img/sh2.png"/>
+                </div>
             </div>
             <div class="w-full md:w-1/3 p-4">
-                <h3 class="text-2xl font-bold mb-2">Nilai Kami</h3>
-                <p>Kenyamanan dan keunggulan.</p>
-                <img alt="Kolaborasi tim pada proyek SEO" class="rounded-lg mt-4" src="img/sh3.png" style="width: 300px; height: 200px;"/>
+                <div class="bg-gray-100 p-6 rounded-lg shadow-lg h-full">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800 text-center">Nilai Kami</h3>
+                    <p class="text-gray-600 mb-4">Kenyamanan, kebersamaan, dan keunggulan layanan menjadi prioritas utama kami untuk semua pelanggan.</p>
+                    <img alt="Acara di SUKE HIGHLAND" class="rounded-lg w-full h-48 object-cover" src="img/sh3.png"/>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Services Section -->
-<section class="bg-white py-20" id="layanan">
-    <div class="container mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Layanan Kami</h2>
-        <div class="flex flex-wrap justify-center">
-            <div class="w-full md:w-1/4 p-4">
-                <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                    <i class="fas fa-utensils text-4xl text-blue-500 mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-2">Pesan Makanan</h3>
-                    <p>Pesan makanan lezat dari menu kami yang beragam.</p>
+<section id="layanan" class="py-20 bg-gray-100">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Layanan Kami</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Berbagai fasilitas dan layanan unggulan yang kami sediakan untuk kenyamanan Anda.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                <div class="text-center">
+                    <i class="fas fa-utensils text-4xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Pesan Makanan</h3>
+                    <p class="text-gray-600">Pesan makanan lezat dari berbagai stand kuliner pilihan kami.</p>
                 </div>
             </div>
-            <div class="w-full md:w-1/4 p-4">
-                <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                    <i class="fas fa-coffee text-4xl text-blue-500 mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-2">Pesan Minuman</h3>
-                    <p>Nikmati berbagai minuman segar.</p>
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                <div class="text-center">
+                    <i class="fas fa-coffee text-4xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Pesan Minuman</h3>
+                    <p class="text-gray-600">Nikmati berbagai minuman segar dari bar kami.</p>
                 </div>
             </div>
-            <div class="w-full md:w-1/4 p-4">
-                <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                    <i class="fas fa-wifi text-4xl text-blue-500 mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-2">Internet Gratis</h3>
-                    <p>Akses internet gratis untuk semua pelanggan kami.</p>
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                <div class="text-center">
+                    <i class="fas fa-wifi text-4xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Internet Gratis</h3>
+                    <p class="text-gray-600">Akses internet cepat untuk semua pelanggan kami.</p>
                 </div>
             </div>
-            <div class="w-full md:w-1/4 p-4">
-                <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                    <i class="fas fa-parking text-4xl text-blue-500 mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-2">Parkiran Gratis</h3>
-                    <p>Parkir gratis tersedia untuk semua pelanggan kami.</p>
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                <div class="text-center">
+                    <i class="fas fa-parking text-4xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Parkiran Gratis</h3>
+                    <p class="text-gray-600">Area parkir luas dan aman untuk kendaraan Anda.</p>
                 </div>
             </div>
         </div>
@@ -214,47 +287,111 @@
 </section>
 
 <!-- Brands Section -->
-<section class="py-20 bg-gray-100" id="brand">
-    <div class="container mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Support By</h2>
-        <div class="flex flex-wrap justify-center">
-            <div class="w-full md:w-1/3 p-4 flex justify-center">
-                <img alt="Logo Bir Bintang" class="rounded-lg mb-4" src="img/bintang.jpeg"/>
+<section id="brand" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Support By</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Partner resmi yang mendukung kegiatan dan acara di SUKE HIGHLAND
+            </p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center items-center gap-8">
+            <div class="w-40 h-40 flex items-center justify-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                <img alt="Logo Bir Bintang" class="max-h-full max-w-full object-contain" src="img/bintang.jpeg"/>
             </div>
-            <div class="w-full md:w-1/3 p-4 flex justify-center">
-                <img alt="Logo Gudang Garam" class="rounded-lg mb-4" src="img/gg.jpeg"/>
+            <div class="w-40 h-40 flex items-center justify-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                <img alt="Logo Gudang Garam" class="max-h-full max-w-full object-contain" src="img/gg.jpeg"/>
             </div>
-            <div class="w-full md:w-1/3 p-4 flex justify-center">
-                <img alt="Logo Bir Singa Raja" class="rounded-lg mb-4" src="img/singaraja.jpeg"/>
+            <div class="w-40 h-40 flex items-center justify-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                <img alt="Logo Bir Singa Raja" class="max-h-full max-w-full object-contain" src="img/singaraja.jpeg"/>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Contact Section -->
-<section class="bg-gray-900 text-white py-20" id="kontak">
-    <div class="container mx-auto text-center px-4">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Hubungi Kami</h2>
-        <p class="text-lg mb-6">Hubungi kami untuk mempelajari lebih lanjut tentang layanan kami.</p>
-        <form class="max-w-lg mx-auto">
-            <div class="mb-4">
-                <input class="w-full p-3 rounded-lg" placeholder="Nama Anda" type="text"/>
+<section id="kontak" class="py-20 bg-gray-900 text-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Hubungi Kami</h2>
+            <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                Untuk informasi lebih lanjut tentang acara, reservasi, atau kerja sama, silakan hubungi kami.
+            </p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto">
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block mb-2 text-sm font-medium">Nama Anda</label>
+                    <input class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-yellow-500 focus:outline-none transition duration-300" type="text" placeholder="Nama lengkap"/>
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium">Email Anda</label>
+                    <input class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-yellow-500 focus:outline-none transition duration-300" type="email" placeholder="alamat@email.com"/>
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block mb-2 text-sm font-medium">Pesan Anda</label>
+                    <textarea class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-yellow-500 focus:outline-none transition duration-300" rows="5" placeholder="Tulis pesan Anda disini..."></textarea>
+                </div>
+                <div class="md:col-span-2 text-center">
+                    <button class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block" type="submit">
+                        Kirim Pesan
+                    </button>
+                </div>
+            </form>
+            
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center">
+                    <i class="fas fa-map-marker-alt text-3xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Lokasi</h3>
+                    <p class="text-gray-300">Jl. Sukacita No. 80, Toraja Utara</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-phone-alt text-3xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Telepon</h3>
+                    <p class="text-gray-300">+62 812 3456 7890</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-envelope text-3xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Email</h3>
+                    <p class="text-gray-300">info@sukehighland.com</p>
+                </div>
             </div>
-            <div class="mb-4">
-                <input class="w-full p-3 rounded-lg" placeholder="Email Anda" type="email"/>
-            </div>
-            <div class="mb-4">
-                <textarea class="w-full p-3 rounded-lg" placeholder="Pesan Anda"></textarea>
-            </div>
-            <button class="bg-blue-500 text-white px-6 py-3 rounded-full hover:bg-blue-600" type="submit">Kirim Pesan</button>
-        </form>
+        </div>
     </div>
 </section>
 
 <!-- Footer -->
-<footer class="bg-gray-800 text-white py-6">
-    <div class="container mx-auto text-center">
-        <p>Copyright SUKE HIGHLAND | Design By Siber Digital Toraja Utara</p>
+<footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <a class="text-2xl font-bold hover:text-yellow-300 transition duration-300" href="#">
+                    <span class="gradient-text">SUKE HIGHLAND</span>
+                </a>
+                <p class="text-gray-400 mt-2">© 2023 SUKE HIGHLAND. All rights reserved.</p>
+            </div>
+            
+            <div class="flex space-x-6">
+                <a href="#" class="text-gray-400 hover:text-yellow-300 transition duration-300 text-xl">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-yellow-300 transition duration-300 text-xl">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-yellow-300 transition duration-300 text-xl">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-yellow-300 transition duration-300 text-xl">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400 text-sm">
+            <p>Design By Siber Digital Toraja Utara</p>
+        </div>
     </div>
 </footer>
 
@@ -263,41 +400,72 @@
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menu-toggle');
         const menu = document.getElementById('menu');
+        
         menuToggle.addEventListener('click', function() {
             menu.classList.toggle('hidden');
         });
 
-        // Fungsi untuk scroll ke bagian tertentu
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            const navbarHeight = document.getElementById('navbar').offsetHeight;
-
-            window.scrollTo({
-                top: section.offsetTop - navbarHeight,
-                behavior: 'smooth'
-            });
-        }
-
-        // Tambahkan event listener ke semua tombol navigasi
-        const navLinks = document.querySelectorAll('nav a[href^="#"]');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-
-                 // Tutup menu mobile saat item diklik
-                if (!menu.classList.contains('hidden')) {
-                    menu.classList.add('hidden');
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navbarHeight = document.getElementById('navbar').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!menu.classList.contains('hidden')) {
+                        menu.classList.add('hidden');
+                    }
                 }
-
-                scrollToSection(targetId);
             });
         });
 
-        // Tangani hash URL saat page load
+        // Handle page load with hash
         if (window.location.hash) {
-            const targetId = window.location.hash.substring(1);
-            scrollToSection(targetId);
+            setTimeout(() => {
+                const targetId = window.location.hash;
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const navbarHeight = document.getElementById('navbar').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 100);
+        }
+        
+        // Auto play video when scrolled to event section
+        const eventVideo = document.getElementById('event-video');
+        const eventSection = document.getElementById('event');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // You can add autoplay logic here if needed
+                    // eventVideo.play().catch(e => console.log("Autoplay prevented:", e));
+                } else {
+                    eventVideo.pause();
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        if (eventSection) {
+            observer.observe(eventSection);
         }
     });
 </script>
