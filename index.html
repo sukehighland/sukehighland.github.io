@@ -46,7 +46,7 @@
             </button>
             <ul class="absolute right-0 mt-2 w-48 bg-gray-800 text-white rounded-lg shadow-lg hidden" id="menu">
                 <li class="border-b border-gray-700">
-                    <a class="block px-4 py-2 hover:bg-gray-700" href="https://sukehighland.github.io/#event">Event</a>
+                    <a class="block px-4 py-2 hover:bg-gray-700" href="#event">Event</a>
                 </li>
                 <li class="border-b border-gray-700">
                     <a class="block px-4 py-2 hover:bg-gray-700" href="#beranda">Beranda</a>
@@ -67,7 +67,7 @@
         </div>
         <ul class="hidden md:flex space-x-4 text-white">
             <li>
-                <a class="hover:text-gray-400" href="https://sukehighland.github.io/#event">Event</a>
+                <a class="hover:text-gray-400" href="#event">Event</a>
             </li>
             <li>
                 <a class="hover:text-gray-400" href="#beranda">Beranda</a>
@@ -100,6 +100,12 @@
 <div id="event-container">
     <p>Coming Soon</p>
 </div>
+
+<!-- Beranda Section (Dummy Content - Replace with your actual Beranda content) -->
+<section id="beranda">
+    <h2>Beranda</h2>
+    <p>Ini adalah konten untuk bagian Beranda.</p>
+</section>
 
 <!-- About Section -->
 <section class="py-20 bg-gray-100" id="tentang">
@@ -242,45 +248,58 @@
                         eventContainer.innerHTML = '<p>Coming Soon</p>';
                         console.warn('Bagian #event tidak ditemukan di https://sukehighland.github.io/');
                     }
-                     // Setelah konten dimuat (atau Coming Soon ditampilkan), scroll ke container event
-                    const navbarHeight = document.getElementById('navbar').offsetHeight;
-                    const eventContainerTop = eventContainer.offsetTop;
-
-                    window.scrollTo({
-                        top: eventContainerTop - navbarHeight,
-                        behavior: 'smooth' // Untuk animasi smooth scrolling (opsional)
-                    });
                 })
                 .catch(error => {
                     console.error('Gagal memuat konten event:', error);
                     const eventContainer = document.getElementById('event-container');
                     eventContainer.innerHTML = '<p>Coming Soon</p>';
-
-                     // Tetap scroll ke container event meski ada error
-                    const navbarHeight = document.getElementById('navbar').offsetHeight;
-                    const eventContainerTop = eventContainer.offsetTop;
-
-                    window.scrollTo({
-                        top: eventContainerTop - navbarHeight,
-                        behavior: 'smooth' // Untuk animasi smooth scrolling (opsional)
-                    });
                 });
         }
 
-        // Saat halaman diakses dengan hash #event
-        if (window.location.hash === '#event') {
-            loadEventContent();
+        // Fungsi untuk scroll ke bagian tertentu
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const navbarHeight = document.getElementById('navbar').offsetHeight;
+
+            window.scrollTo({
+                top: section.offsetTop - navbarHeight,
+                behavior: 'smooth'
+            });
         }
 
-        // Tambahkan event listener ke tombol "Event" di navbar
-        const eventLinks = document.querySelectorAll('a[href="https://sukehighland.github.io/#event"]');
-        eventLinks.forEach(link => {
+        // Tambahkan event listener ke semua tombol navigasi
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        navLinks.forEach(link => {
             link.addEventListener('click', function(event) {
-                event.preventDefault(); // Mencegah navigasi default
-                loadEventContent(); // Muat konten event
-                window.location.hash = '#event'; // Tambahkan hash ke URL
+                event.preventDefault();
+                const targetId = this.getAttribute('href').substring(1); // Hapus '#'
+
+                if (targetId === 'event') {
+                    loadEventContent(); // Load konten Event jika perlu
+                    // Tunggu sebentar agar konten Event selesai dimuat sebelum scroll
+                    setTimeout(() => {
+                        scrollToSection(targetId === 'event' ? 'event-container' : targetId);
+                    }, 100); // Delay 100ms
+                } else {
+                    scrollToSection(targetId); // Scroll ke bagian lain
+                }
             });
         });
+
+        // Saat halaman diakses dengan hash
+        if (window.location.hash) {
+            const targetId = window.location.hash.substring(1);
+             if (targetId === 'event') {
+                    loadEventContent(); // Load konten Event jika perlu
+                     // Tunggu sebentar agar konten Event selesai dimuat sebelum scroll
+                    setTimeout(() => {
+                        scrollToSection(targetId === 'event' ? 'event-container' : targetId);
+                    }, 100); // Delay 100ms
+                } else {
+                    scrollToSection(targetId); // Scroll ke bagian lain
+                }
+
+        }
     });
 </script>
 
