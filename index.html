@@ -89,7 +89,7 @@
 </nav>
 
 <!-- Hero Section -->
-<section class="relative min-h-screen">
+<section class="relative min-h-screen" id="hero-section">
     <div class="absolute inset-0 z-0">
         <div class="w-full h-full bg-cover bg-center" style="background-image: url('img/bg-hero.png')"></div>
     </div>
@@ -229,31 +229,37 @@
             fetch('https://sukehighland.github.io/')
                 .then(response => response.text())
                 .then(data => {
-                    // Cari elemen dengan ID "event" dalam konten yang dimuat
                     const eventContent = document.createElement('div');
                     eventContent.innerHTML = data;
                     const eventSection = eventContent.querySelector('#event');
 
-                    // Jika elemen "event" ditemukan, tambahkan ke halaman Anda
                     const eventContainer = document.getElementById('event-container');
-                    eventContainer.innerHTML = ''; // Kosongkan container sebelumnya
+                    eventContainer.innerHTML = '';
+
+                    const heroSection = document.getElementById('hero-section'); // Dapatkan Hero Section
 
                     if (eventSection) {
                         eventContainer.appendChild(eventSection);
+                        heroSection.style.display = 'none'; // Sembunyikan Hero Section
                     } else {
-                        eventContainer.innerHTML = '<p>Coming Soon</p>'; // Tampilkan Coming Soon
+                        eventContainer.innerHTML = '<p>Coming Soon</p>';
+                        heroSection.style.display = 'block'; // Pastikan Hero Section terlihat jika Coming Soon
                         console.warn('Bagian #event tidak ditemukan di https://sukehighland.github.io/');
                     }
                 })
                 .catch(error => {
                     console.error('Gagal memuat konten event:', error);
                     const eventContainer = document.getElementById('event-container');
-                    eventContainer.innerHTML = '<p>Coming Soon</p>'; // Tampilkan Coming Soon jika error
+                    eventContainer.innerHTML = '<p>Coming Soon</p>';
+                    const heroSection = document.getElementById('hero-section'); // Dapatkan Hero Section
+                    heroSection.style.display = 'block'; // Pastikan Hero Section terlihat jika error
                 });
         }
 
-        // Periksa apakah halaman diakses dengan hash #event
+        // Saat halaman diakses dengan hash #event, sembunyikan hero section
         if (window.location.hash === '#event') {
+            const heroSection = document.getElementById('hero-section');
+            heroSection.style.display = 'none';
             loadEventContent();
         }
 
