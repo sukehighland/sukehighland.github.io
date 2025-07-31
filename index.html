@@ -24,13 +24,14 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        #event-container {
-            margin-top: 20px; /* Berikan jarak dari bagian atas */
+        /* Style untuk Event Section */
+        #event {
             padding: 20px;
             background-color: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 5px;
-            text-align: center; /* Tengahkan teks Coming Soon */
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -97,14 +98,40 @@
 </section>
 
 <!-- Event Section (Initially Coming Soon) -->
-<div id="event-container">
-    <p>Coming Soon</p>
-</div>
+<section id="event" class="py-20 bg-white">
+    <div class="container mx-auto text-center px-4">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Event Terbaru</h2>
+        <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
+            <p>Coming Soon</p>
+        </div>
+    </div>
+</section>
 
-<!-- Beranda Section (Dummy Content - Replace with your actual Beranda content) -->
-<section id="beranda">
-    <h2>Beranda</h2>
-    <p>Ini adalah konten untuk bagian Beranda.</p>
+<!-- Beranda Section -->
+<section id="beranda" class="py-20 bg-gray-100">
+    <div class="container mx-auto text-center px-4">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Selamat Datang di SUKE HIGHLAND</h2>
+        <p class="text-lg mb-6">
+            Nikmati pengalaman bersantai terbaik dengan berbagai layanan kami:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow">
+                <i class="fas fa-utensils text-4xl text-blue-500 mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Makanan Lezat</h3>
+                <p>Menu makanan berkualitas dengan cita rasa tinggi</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <i class="fas fa-music text-4xl text-blue-500 mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Live Music</h3>
+                <p>Hiburan musik langsung di tempat kami</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <i class="fas fa-wifi text-4xl text-blue-500 mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">WiFi Gratis</h3>
+                <p>Akses internet cepat untuk pelanggan</p>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- About Section -->
@@ -222,41 +249,39 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Mobile Menu Toggle Script
+        // Mobile Menu Toggle
         const menuToggle = document.getElementById('menu-toggle');
         const menu = document.getElementById('menu');
-
         menuToggle.addEventListener('click', function() {
             menu.classList.toggle('hidden');
         });
 
-        // Fungsi untuk memuat konten event
+        // Fungsi untuk memuat konten event dari URL eksternal
         function loadEventContent() {
+            const eventSection = document.getElementById('event');
+            eventSection.innerHTML = '<div class="container mx-auto text-center px-4"><div class="bg-gray-100 p-6 rounded-lg shadow-lg"><p>Loading...</p></div></div>'; // Tampilkan pesan loading
+
             fetch('https://sukehighland.github.io/')
                 .then(response => response.text())
                 .then(data => {
                     const eventContent = document.createElement('div');
                     eventContent.innerHTML = data;
-                    const eventSection = eventContent.querySelector('#event');
+                    const externalEventSection = eventContent.querySelector('#event');
 
-                    const eventContainer = document.getElementById('event-container');
-                    eventContainer.innerHTML = '';
-
-                    if (eventSection) {
-                        eventContainer.appendChild(eventSection);
+                    if (externalEventSection) {
+                        eventSection.innerHTML = externalEventSection.innerHTML; // Salin konten dari halaman eksternal
                     } else {
-                        eventContainer.innerHTML = '<p>Coming Soon</p>';
+                        eventSection.innerHTML = '<div class="container mx-auto text-center px-4"><div class="bg-gray-100 p-6 rounded-lg shadow-lg"><p>Coming Soon</p></div></div>';
                         console.warn('Bagian #event tidak ditemukan di https://sukehighland.github.io/');
                     }
                 })
                 .catch(error => {
                     console.error('Gagal memuat konten event:', error);
-                    const eventContainer = document.getElementById('event-container');
-                    eventContainer.innerHTML = '<p>Coming Soon</p>';
+                    eventSection.innerHTML = '<div class="container mx-auto text-center px-4"><div class="bg-gray-100 p-6 rounded-lg shadow-lg"><p>Coming Soon</p></div></div>';
                 });
         }
 
-        // Fungsi untuk scroll ke bagian tertentu
+         // Fungsi untuk scroll ke bagian tertentu
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
             const navbarHeight = document.getElementById('navbar').offsetHeight;
@@ -267,41 +292,43 @@
             });
         }
 
-        // Tambahkan event listener ke semua tombol navigasi
+         // Tambahkan event listener ke semua tombol navigasi
         const navLinks = document.querySelectorAll('nav a[href^="#"]');
         navLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                const targetId = this.getAttribute('href').substring(1); // Hapus '#'
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+
+                 // Tutup menu mobile saat item diklik
+                if (!menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                }
 
                 if (targetId === 'event') {
-                    loadEventContent(); // Load konten Event jika perlu
-                    // Tunggu sebentar agar konten Event selesai dimuat sebelum scroll
+                    loadEventContent(); // Muat konten Event
                     setTimeout(() => {
-                        scrollToSection(targetId === 'event' ? 'event-container' : targetId);
-                    }, 100); // Delay 100ms
+                        scrollToSection(targetId); // Scroll setelah konten dimuat
+                    }, 200); // Delay 200ms untuk memastikan konten dimuat
                 } else {
                     scrollToSection(targetId); // Scroll ke bagian lain
                 }
             });
         });
 
-        // Saat halaman diakses dengan hash
+        // Tangani hash URL saat page load
         if (window.location.hash) {
             const targetId = window.location.hash.substring(1);
-             if (targetId === 'event') {
-                    loadEventContent(); // Load konten Event jika perlu
-                     // Tunggu sebentar agar konten Event selesai dimuat sebelum scroll
-                    setTimeout(() => {
-                        scrollToSection(targetId === 'event' ? 'event-container' : targetId);
-                    }, 100); // Delay 100ms
-                } else {
-                    scrollToSection(targetId); // Scroll ke bagian lain
-                }
 
+             if (targetId === 'event') {
+                loadEventContent();
+                 setTimeout(() => {
+                    scrollToSection(targetId); // Scroll setelah konten dimuat
+                }, 200); // Delay 200ms untuk memastikan konten dimuat
+            } else {
+                scrollToSection(targetId);
+            }
         }
     });
 </script>
-
 </body>
 </html>
