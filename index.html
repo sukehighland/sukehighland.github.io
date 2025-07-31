@@ -97,12 +97,15 @@
     <!-- Hero Content Here -->
 </section>
 
-<!-- Event Section (Initially Coming Soon) -->
+<!-- Event Section -->
 <section id="event" class="py-20 bg-white">
     <div class="container mx-auto text-center px-4">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Event Terbaru</h2>
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Suke Festival Merdeka</h2>
         <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-            <p>Coming Soon</p>
+            <video id="event-video" width="640" height="360" controls>
+                <source src="Suke_Festival_Merdeka.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
     </div>
 </section>
@@ -256,32 +259,7 @@
             menu.classList.toggle('hidden');
         });
 
-        // Fungsi untuk memuat konten event dari URL eksternal
-        function loadEventContent() {
-            const eventSection = document.getElementById('event');
-            eventSection.innerHTML = '<div class="container mx-auto text-center px-4"><div class="bg-gray-100 p-6 rounded-lg shadow-lg"><p>Loading...</p></div></div>'; // Tampilkan pesan loading
-
-            fetch('https://sukehighland.github.io/')
-                .then(response => response.text())
-                .then(data => {
-                    const eventContent = document.createElement('div');
-                    eventContent.innerHTML = data;
-                    const externalEventSection = eventContent.querySelector('#event');
-
-                    if (externalEventSection) {
-                        eventSection.innerHTML = externalEventSection.innerHTML; // Salin konten dari halaman eksternal
-                    } else {
-                        eventSection.innerHTML = '<div class="container mx-auto text-center px-4"><div class="bg-gray-100 p-6 rounded-lg shadow-lg"><p>Coming Soon</p></div></div>';
-                        console.warn('Bagian #event tidak ditemukan di https://sukehighland.github.io/');
-                    }
-                })
-                .catch(error => {
-                    console.error('Gagal memuat konten event:', error);
-                    eventSection.innerHTML = '<div class="container mx-auto text-center px-4"><div class="bg-gray-100 p-6 rounded-lg shadow-lg"><p>Coming Soon</p></div></div>';
-                });
-        }
-
-         // Fungsi untuk scroll ke bagian tertentu
+        // Fungsi untuk scroll ke bagian tertentu
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
             const navbarHeight = document.getElementById('navbar').offsetHeight;
@@ -292,7 +270,7 @@
             });
         }
 
-         // Tambahkan event listener ke semua tombol navigasi
+        // Tambahkan event listener ke semua tombol navigasi
         const navLinks = document.querySelectorAll('nav a[href^="#"]');
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
@@ -304,29 +282,14 @@
                     menu.classList.add('hidden');
                 }
 
-                if (targetId === 'event') {
-                    loadEventContent(); // Muat konten Event
-                    setTimeout(() => {
-                        scrollToSection(targetId); // Scroll setelah konten dimuat
-                    }, 200); // Delay 200ms untuk memastikan konten dimuat
-                } else {
-                    scrollToSection(targetId); // Scroll ke bagian lain
-                }
+                scrollToSection(targetId);
             });
         });
 
         // Tangani hash URL saat page load
         if (window.location.hash) {
             const targetId = window.location.hash.substring(1);
-
-             if (targetId === 'event') {
-                loadEventContent();
-                 setTimeout(() => {
-                    scrollToSection(targetId); // Scroll setelah konten dimuat
-                }, 200); // Delay 200ms untuk memastikan konten dimuat
-            } else {
-                scrollToSection(targetId);
-            }
+            scrollToSection(targetId);
         }
     });
 </script>
