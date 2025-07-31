@@ -33,6 +33,21 @@
             text-align: center;
             margin-top: 20px;
         }
+
+        /* Style untuk video container */
+        #event .bg-gray-100 {
+          display: flex;
+          justify-content: center; /* Tengahkan horizontal */
+          align-items: center; /* Tengahkan vertikal */
+        }
+
+        /* Style untuk menyesuaikan ukuran video */
+        #event-video {
+            width: 100%; /* Lebar maksimum 100% dari container */
+            height: 100%;      /* Tinggi menyesuaikan proporsi */
+            object-fit: contain;  /* Pertahankan rasio aspek, muat dalam container */
+            background-color: black; /* Warna latar belakang hitam jika video tidak mengisi seluruh area */
+        }
     </style>
 </head>
 <body class="font-roboto">
@@ -102,10 +117,12 @@
     <div class="container mx-auto text-center px-4">
         <h2 class="text-3xl md:text-4xl font-bold mb-6">Suke Festival Merdeka</h2>
         <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-            <video id="event-video" width="640" height="360" controls>
-                <source src="Suke_Festival_Merdeka.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <div style="width: 360px; height: 640px; max-width: 100%;">
+                <video id="event-video" controls style="object-fit: contain; background-color: black;">
+                    <source src="Suke_Festival_Merdeka.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
         </div>
     </div>
 </section>
