@@ -37,7 +37,7 @@
 <body class="font-roboto">
 
 <!-- Navbar -->
-<nav class="bg-gray-800 p-4 sticky">
+<nav class="bg-gray-800 p-4 sticky" id="navbar">
     <div class="container mx-auto flex justify-between items-center">
         <a class="text-white text-2xl font-bold" href="#">SUKE HIGHLAND</a>
         <div class="md:hidden relative">
@@ -236,30 +236,39 @@
                     const eventContainer = document.getElementById('event-container');
                     eventContainer.innerHTML = '';
 
-                    const heroSection = document.getElementById('hero-section'); // Dapatkan Hero Section
-
                     if (eventSection) {
                         eventContainer.appendChild(eventSection);
-                        heroSection.style.display = 'none'; // Sembunyikan Hero Section
                     } else {
                         eventContainer.innerHTML = '<p>Coming Soon</p>';
-                        heroSection.style.display = 'block'; // Pastikan Hero Section terlihat jika Coming Soon
                         console.warn('Bagian #event tidak ditemukan di https://sukehighland.github.io/');
                     }
+                     // Setelah konten dimuat (atau Coming Soon ditampilkan), scroll ke container event
+                    const navbarHeight = document.getElementById('navbar').offsetHeight;
+                    const eventContainerTop = eventContainer.offsetTop;
+
+                    window.scrollTo({
+                        top: eventContainerTop - navbarHeight,
+                        behavior: 'smooth' // Untuk animasi smooth scrolling (opsional)
+                    });
                 })
                 .catch(error => {
                     console.error('Gagal memuat konten event:', error);
                     const eventContainer = document.getElementById('event-container');
                     eventContainer.innerHTML = '<p>Coming Soon</p>';
-                    const heroSection = document.getElementById('hero-section'); // Dapatkan Hero Section
-                    heroSection.style.display = 'block'; // Pastikan Hero Section terlihat jika error
+
+                     // Tetap scroll ke container event meski ada error
+                    const navbarHeight = document.getElementById('navbar').offsetHeight;
+                    const eventContainerTop = eventContainer.offsetTop;
+
+                    window.scrollTo({
+                        top: eventContainerTop - navbarHeight,
+                        behavior: 'smooth' // Untuk animasi smooth scrolling (opsional)
+                    });
                 });
         }
 
-        // Saat halaman diakses dengan hash #event, sembunyikan hero section
+        // Saat halaman diakses dengan hash #event
         if (window.location.hash === '#event') {
-            const heroSection = document.getElementById('hero-section');
-            heroSection.style.display = 'none';
             loadEventContent();
         }
 
