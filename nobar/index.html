@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nobar Pesta Babi - Suke Highland</title>
+    <!-- SEO and Social Media Share Preview (Open Graph / Meta Tags) -->
+    <meta name="description" content="Nonton Bareng film dokumenter spesial: Pesta Babi di Suke Highland, Toraja Utara. Minggu, 24 Mei jam 21:00 WITA.">
+    
+    <!-- Open Graph / Facebook / WhatsApp / Telegram -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nobar Pesta Babi - Suke Highland">
+    <meta property="og:description" content="Nonton Bareng film dokumenter spesial: Pesta Babi di Suke Highland, Toraja Utara. Minggu, 24 Mei jam 21:00 WITA. Tempat terbatas!">
+    <meta property="og:image" content="https://raw.githubusercontent.com/[USER_GITHUB]/[REPO_NAME]/main/pesta_babi_share_banner.png">
+    
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nobar Pesta Babi - Suke Highland">
+    <meta name="twitter:description" content="Nonton Bareng film dokumenter spesial: Pesta Babi di Suke Highland, Toraja Utara. Minggu, 24 Mei jam 21:00 WITA. Tempat terbatas!">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/[USER_GITHUB]/[REPO_NAME]/main/pesta_babi_share_banner.png">
+
+    <!-- Import Google Fonts: Outfit for premium modern feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Menghilangkan margin bawaan dan membuat halaman full screen */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Mencegah scroll */
+            background-color: #000; /* Latar belakang hitam jika gambar tidak proporsional */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Membuat gambar responsif penuh di layar mobile dengan efek overflow */
+        .poster-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            background-color: #0d0d0d; /* Latar belakang gelap agar denyut cahaya lebih kontras */
+            perspective: 1200px; /* Aktifkan mode 3D untuk efek kemiringan poster */
+        }
+
+        /* Wrapper untuk menampung gambar dengan efek 3D Tilt dan Ambient Glow */
+        .poster-wrapper {
+            height: 88%;
+            aspect-ratio: 9 / 16;
+            position: relative;
+            border-radius: 16px;
+            /* Efek pendaran cahaya (ambient glow) lembut di belakang poster */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6),
+                        0 0 30px rgba(230, 57, 70, 0.15),
+                        0 0 60px rgba(255, 159, 67, 0.08);
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            background-color: transparent;
+            /* Efek denyut cahaya latar dinamis */
+            animation: pulseAmbientGlow 4s infinite alternate ease-in-out;
+        }
+
+        /* Hover: Memperkuat cahaya dan efek 3D */
+        .poster-wrapper:hover {
+            animation-play-state: paused; /* Hentikan denyut otomatis saat kursor berinteraksi */
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7),
+                        0 0 50px rgba(230, 57, 70, 0.4),
+                        0 0 100px rgba(255, 159, 67, 0.2);
+        }
+
+        @keyframes pulseAmbientGlow {
+            0% {
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6),
+                            0 0 25px rgba(230, 57, 70, 0.15),
+                            0 0 50px rgba(255, 159, 67, 0.08);
+            }
+            100% {
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6),
+                            0 0 45px rgba(230, 57, 70, 0.3),
+                            0 0 90px rgba(255, 159, 67, 0.18);
+            }
+        }
+
+        /* Container 3D Flip */
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-inner.flipped {
+            transform: rotateY(180deg);
+        }
+
+        /* Sisi depan dan belakang kartu */
+        .card-front, .card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .card-front {
+            z-index: 2;
+            transform: rotateY(0deg);
+            background-color: #111;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background-color: #050505;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Image styling */
+        .card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(1) contrast(1.02);
+        }
+
+        .card-back img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0.85;
+            filter: contrast(1.1) brightness(0.9) saturate(1.1);
+        }
+
+        /* Efek pantulan cahaya kaca glossy interaktif */
+        .light-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+            background: radial-gradient(circle 220px at var(--x, 50%) var(--y, 50%), 
+                            rgba(255, 255, 255, 0.22) 0%, 
+                            rgba(255, 255, 255, 0.05) 50%, 
+                            rgba(255, 255, 255, 0) 100%);
+            mix-blend-mode: overlay;
+        }
+
+        /* Efek kilatan cahaya diagonal */
+        .shimmer-sweep {
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.35) 45%,
+                rgba(255, 255, 255, 0.7) 50%,
+                rgba(255, 255, 255, 0.35) 55%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: skewX(-30deg);
+            z-index: 6;
+            pointer-events: none;
+            animation: sweepLight 5s infinite cubic-bezier(0.3, 0.1, 0.3, 0.85);
+        }
+
+        @keyframes sweepLight {
+            0% { left: -150%; }
+            12% { left: 150%; }
+            100% { left: 150%; }
+        }
+
+        /* HUD Glassmorphism Address Card Overlay */
+        .map-overlay {
+            position: absolute;
+            bottom: 24px;
+            left: 16px;
+            right: 16px;
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            padding: 18px;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            text-align: left;
+        }
+        
+        .map-hud-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.65rem;
+            color: #00ffcc;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+        
+        .map-hud-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #00ffcc;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #00ffcc;
+            animation: pulseDot 1s infinite alternate;
+        }
+        
+        @keyframes pulseDot {
+            0% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+        
+        .map-title {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+        
+        .map-desc {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #a5a5a5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 2px;
+        }
+        
+        .map-address {
+            font-size: 0.75rem;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 300;
+        }
+        
+        .map-coords {
+            margin-top: 6px;
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 1px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 6px;
+        }
+
+        /* Tombol Putar Cuplikan Premium */
+        .play-btn {
+            position: absolute;
+            z-index: 100;
+            padding: 16px 36px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            font-family: inherit;
+            color: #fff;
+            background: linear-gradient(135deg, #e63946, #b11e2b);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            cursor: pointer;
+            outline: none;
+            box-shadow: 0 0 20px rgba(230, 57, 70, 0.4),
+                        0 0 40px rgba(230, 57, 70, 0.2),
+                        inset 0 0 10px rgba(255, 255, 255, 0.2);
+            transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease, background 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: pulseBtn 2s infinite ease-in-out;
+            transform: scale(1);
+        }
+
+        .play-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 30px rgba(230, 57, 70, 0.7),
+                        0 0 60px rgba(230, 57, 70, 0.4),
+                        inset 0 0 15px rgba(255, 255, 255, 0.4);
+            background: linear-gradient(135deg, #ff4d5a, #d62839);
+        }
+
+        .play-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Class untuk menyembunyikan tombol secara halus saat presentasi berjalan */
+        .play-btn.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.85);
+        }
+
+        @keyframes pulseBtn {
+            0% {
+                box-shadow: 0 0 20px rgba(230, 57, 70, 0.4),
+                            0 0 40px rgba(230, 57, 70, 0.2),
+                            inset 0 0 10px rgba(255, 255, 255, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(230, 57, 70, 0.7),
+                            0 0 60px rgba(230, 57, 70, 0.4),
+                            inset 0 0 15px rgba(255, 255, 255, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(230, 57, 70, 0.4),
+                            0 0 40px rgba(230, 57, 70, 0.2),
+                            inset 0 0 10px rgba(255, 255, 255, 0.2);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Audio Backsound -->
+    <audio id="bgMusic" loop>
+        <source src="WONDERFUL INDONESIA ETHNIC BACKSOUND - WFS MUSIK (1).mp3" type="audio/mpeg">
+    </audio>
+
+
+
+    <div class="poster-container">
+        <div class="poster-wrapper" id="posterWrapper">
+            <div class="card-inner" id="cardInner">
+                <div class="card-front">
+                    <img src="WhatsApp Image 2026-05-21 at 20.31.00.jpeg" alt="Poster Nobar Pesta Babi">
+                    <div class="light-overlay" id="lightOverlayFront"></div>
+                    <div class="shimmer-sweep"></div>
+                </div>
+                <div class="card-back">
+                    <img src="suke_highland_map.png" alt="Suke Highland Satellite Map">
+                    <div class="light-overlay" id="lightOverlayBack"></div>
+                    <div class="map-overlay">
+                        <div class="map-hud-header">
+                            <span class="map-hud-dot"></span>
+                            <span class="map-hud-status">SATELLITE SIGNAL ACTIVE</span>
+                        </div>
+                        <h3 class="map-title">LOKASI NOBAR</h3>
+                        <p class="map-desc">Suke Highland</p>
+                        <p class="map-address">Jl. Poros Bolu - Rantepao, Tallunglipu Matalo, Kec. Tallunglipu, Kabupaten Toraja Utara, Sulawesi Selatan 91833</p>
+                        <div class="map-coords">02°58'45.2"S 119°54'12.8"E</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="playBtn" class="play-btn">Putar Cuplikan</button>
+    </div>
+
+    <script>
+        // Memastikan daftar suara (voices) dimuat oleh browser sebelum tombol diklik
+        let availableVoices = [];
+        function loadVoices() {
+            availableVoices = window.speechSynthesis.getVoices();
+        }
+        // Jalankan saat pertama kali
+        loadVoices();
+        // Listener jika browser membutuhkan waktu untuk memuat suara dari internet
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+
+        let hasStarted = false;
+        let mediaRecorder = null;
+        let recordedChunks = [];
+        let flipToMapTimeout = null;
+        let flipToPosterTimeout = null;
+
+        async function startPresentation(isAutoplay = false) {
+            if (hasStarted) return;
+            hasStarted = true;
+
+            const bgMusic = document.getElementById('bgMusic');
+            const playBtn = document.getElementById('playBtn');
+            const cardInner = document.getElementById('cardInner');
+            if (playBtn) playBtn.classList.add('hidden');
+
+            // Reset card state to front initially
+            if (cardInner) {
+                cardInner.classList.remove('flipped');
+            }
+            if (flipToMapTimeout) clearTimeout(flipToMapTimeout);
+            if (flipToPosterTimeout) clearTimeout(flipToPosterTimeout);
+
+            // Coba putar musik terlebih dahulu untuk mendeteksi apakah autoplay diperbolehkan browser
+            try {
+                bgMusic.volume = 0.6;
+                await bgMusic.play();
+            } catch (playErr) {
+                console.warn("Autoplay diblokir oleh browser. Menunggu ketukan layar untuk memulai...", playErr);
+                hasStarted = false; // Reset status agar bisa dipicu oleh interaksi pengguna nanti
+                if (playBtn) playBtn.classList.remove('hidden');
+                return;
+            }
+
+            // 1. Masuk ke mode fullscreen jika BUKAN autoplay (karena fullscreen butuh interaksi user)
+            if (!isAutoplay) {
+                try {
+                    if (document.documentElement.requestFullscreen) {
+                        await document.documentElement.requestFullscreen();
+                    } else if (document.documentElement.webkitRequestFullscreen) { /* Safari / iOS / Webkit */
+                        await document.documentElement.webkitRequestFullscreen();
+                    } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
+                        await document.documentElement.msRequestFullscreen();
+                    }
+                } catch (err) {
+                    console.warn("Gagal mengaktifkan mode fullscreen:", err);
+                }
+            }
+
+            const stream = null;
+            let mediaRecorder = null;
+            let recordedChunks = [];
+            let recordingSupported = !isAutoplay && !!(navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia);
+
+            // 2. Minta izin perekaman layar internal jika didukung dan bukan autoplay
+            if (recordingSupported) {
+                try {
+                    const tempStream = await navigator.mediaDevices.getDisplayMedia({
+                        video: {
+                            displaySurface: "browser",
+                            width: { ideal: 1280 },
+                            height: { ideal: 720 },
+                            frameRate: { ideal: 30 }
+                        },
+                        audio: true
+                    });
+                    
+                    // Setup MediaRecorder jika stream tersedia
+                    if (tempStream) {
+                        recordedChunks = [];
+                        let options = { mimeType: 'video/mp4' };
+                        if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                            options.mimeType = 'video/webm;codecs=vp9,opus';
+                        }
+
+                        try {
+                            mediaRecorder = new MediaRecorder(tempStream, options);
+                            mediaRecorder.ondataavailable = function(e) {
+                                if (e.data && e.data.size > 0) {
+                                    recordedChunks.push(e.data);
+                                }
+                            };
+
+                            mediaRecorder.onstop = function() {
+                                tempStream.getTracks().forEach(track => track.stop());
+                                const blob = new Blob(recordedChunks, { type: options.mimeType });
+                                const url = URL.createObjectURL(blob);
+                                const a = document.createElement('a');
+                                a.style.display = 'none';
+                                a.href = url;
+                                const extension = options.mimeType.includes('mp4') ? 'mp4' : 'webm';
+                                a.download = `Nobar_Pesta_Babi.${extension}`;
+                                document.body.appendChild(a);
+                                a.click();
+                                setTimeout(() => {
+                                    document.body.removeChild(a);
+                                    URL.revokeObjectURL(url);
+                                }, 100);
+                                
+                                hasStarted = false;
+                                if (playBtn) playBtn.classList.remove('hidden');
+
+                                if (flipToMapTimeout) clearTimeout(flipToMapTimeout);
+                                if (flipToPosterTimeout) clearTimeout(flipToPosterTimeout);
+                                if (cardInner) {
+                                    cardInner.classList.remove('flipped');
+                                }
+                                
+                                try {
+                                    if (document.exitFullscreen) {
+                                        document.exitFullscreen();
+                                    } else if (document.webkitExitFullscreen) {
+                                        document.webkitExitFullscreen();
+                                    }
+                                } catch (e) {}
+                            };
+
+                            mediaRecorder.start();
+                        } catch (e) {
+                            console.error("Gagal memulai MediaRecorder:", e);
+                            tempStream.getTracks().forEach(track => track.stop());
+                        }
+                    }
+                } catch (err) {
+                    console.warn("Izin perekaman internal ditolak atau gagal, lanjut memutar audio:", err);
+                }
+            }
+
+            // 3. Pengumuman TTS
+            const teksVO = "Jangan lewatkan! Acara Nonton Bareng film dokumenter spesial: Pesta Babi. Datang, tonton, dan bawa pulang insait barumu. Acara dimulai hari Minggu, dua puluh empat Mei, jam sembilan malam waktu indonesia tengah, langsung dari Suke Highland. Jangan lupa ajak keluarga dan teman-teman! Ingat, tempat terbatas, datang paling cepat untuk mendapatkan spot terbaik! Jangan sampai kelewatan, kami tunggu kedatangannya!";
+
+            const speech = new SpeechSynthesisUtterance();
+            speech.text = teksVO;
+            speech.lang = 'id-ID'; 
+            
+            const indonesianVoices = availableVoices.filter(v => v.lang.includes('id') || v.lang.includes('ID'));
+            
+            if (indonesianVoices.length > 0) {
+                let selectedVoice = indonesianVoices.find(v => 
+                    v.name.includes('Andika') || 
+                    v.name.includes('Ardi') || 
+                    v.name.toLowerCase().includes('male')
+                );
+                
+                if (!selectedVoice) {
+                    selectedVoice = indonesianVoices[0];
+                }
+                
+                speech.voice = selectedVoice;
+            }
+
+            speech.rate = 1.15;    
+            speech.pitch = 0.9;    
+            speech.volume = 1;     
+
+            // Event saat TTS mulai berbicara
+            speech.onstart = function() {
+                bgMusic.volume = 0.15; // Pastikan volume tetap kecil selama bicara
+
+                // Flip ke peta (belakang) di detik ke-12
+                flipToMapTimeout = setTimeout(() => {
+                    if (cardInner) {
+                        cardInner.classList.add('flipped');
+                    }
+                }, 12000);
+
+                // Flip kembali ke poster (depan) di detik ke-20
+                flipToPosterTimeout = setTimeout(() => {
+                    if (cardInner) {
+                        cardInner.classList.remove('flipped');
+                    }
+                }, 20000);
+            };
+
+            // Event saat TTS selesai berbicara (mengembalikan volume musik)
+            speech.onend = function() {
+                if (flipToMapTimeout) clearTimeout(flipToMapTimeout);
+                if (flipToPosterTimeout) clearTimeout(flipToPosterTimeout);
+                if (cardInner) {
+                    cardInner.classList.remove('flipped');
+                }
+
+                let vol = 0.15;
+                const fadeAudio = setInterval(() => {
+                    if (vol < 0.6) {
+                        vol += 0.05;
+                        bgMusic.volume = Math.min(0.6, vol);
+                    } else {
+                        clearInterval(fadeAudio);
+                        
+                        // Setelah musik kembali ke volume normal, tunggu 4 detik sebagai outro musik, lalu matikan rekaman
+                        setTimeout(() => {
+                            if (mediaRecorder && mediaRecorder.state !== "inactive") {
+                                mediaRecorder.stop();
+                            } else {
+                                // Jika tidak merekam (misal merekam manual di HP), reset status agar bisa diputar kembali
+                                hasStarted = false;
+                                if (playBtn) playBtn.classList.remove('hidden');
+                                
+                                // Keluar dari mode fullscreen setelah selesai
+                                try {
+                                    if (document.exitFullscreen) {
+                                        document.exitFullscreen();
+                                    } else if (document.webkitExitFullscreen) {
+                                        document.webkitExitFullscreen();
+                                    }
+                                } catch (e) {}
+                            }
+                        }, 4000);
+                    }
+                }, 200);
+            };
+
+            // Beri jeda 2 detik untuk intro musik, lalu mulai bicara
+            setTimeout(() => {
+                // Turunkan volume musik perlahan sebelum TTS bicara
+                let volDown = 0.6;
+                const fadeDown = setInterval(() => {
+                    if (volDown > 0.15) {
+                        volDown -= 0.05;
+                        bgMusic.volume = Math.max(0.15, volDown);
+                    } else {
+                        clearInterval(fadeDown);
+                        // Jalankan TTS
+                        window.speechSynthesis.speak(speech);
+                    }
+                }, 100);
+            }, 2000);
+        }
+
+        // --- Event Listener untuk Pemicu Keyboard & Sentuhan ---
+        
+        // 1. Pemicu tombol SPASI di keyboard
+        window.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.key === ' ') {
+                e.preventDefault(); // Mencegah halaman bergulir ke bawah saat menekan spasi
+                startPresentation(false);
+            }
+        });
+
+        // 2. Pemicu Klik atau Ketukan Layar (Sangat penting sebagai fallback perangkat mobile/tablet)
+        document.body.addEventListener('click', function(e) {
+            // Mencegah klik terpicu saat mengklik tombol putar cuplikan secara ganda
+            if (e.target.id === 'playBtn') return;
+            startPresentation(false);
+        });
+        document.body.addEventListener('touchend', function(e) {
+            if (e.target.id === 'playBtn') return;
+            startPresentation(false);
+        });
+
+        // Event listener khusus untuk tombol "Putar Cuplikan"
+        document.getElementById('playBtn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            startPresentation(false);
+        });
+
+        // 3. Pemicu otomatis saat halaman selesai dimuat
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                startPresentation(true);
+            }, 500);
+        });
+
+        // --- Logika Efek 3D Parallax & Pantulan Cahaya Interaktif ---
+        const wrapper = document.getElementById('posterWrapper');
+        const overlayFront = document.getElementById('lightOverlayFront');
+        const overlayBack = document.getElementById('lightOverlayBack');
+        const cardInner = document.getElementById('cardInner');
+
+        wrapper.addEventListener('mousemove', (e) => {
+            const rect = wrapper.getBoundingClientRect();
+            
+            // Posisi kursor relatif terhadap tengah card (-0.5 sampai 0.5)
+            const x = (e.clientX - rect.left) / rect.width;
+            const y = (e.clientY - rect.top) / rect.height;
+            
+            // Periksa apakah kartu sedang terbalik (flipped)
+            const isFlipped = cardInner && cardInner.classList.contains('flipped');
+            
+            // Hitung sudut rotasi 3D (maksimal 12 derajat)
+            const rotX = (0.5 - y) * 12;
+            const rotY = (x - 0.5) * 12;
+            
+            // Terapkan rotasi 3D & sedikit pembesaran skala
+            wrapper.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.03)`;
+            
+            // Update posisi cahaya gloss overlay
+            const percentX = x * 100;
+            const percentY = y * 100;
+            
+            if (isFlipped) {
+                // Untuk sisi belakang yang berputar 180 derajat di sumbu Y, 
+                // sumbu X cahaya harus dibalik agar kursor dan gloss berkorespondensi secara visual
+                overlayBack.style.setProperty('--x', `${100 - percentX}%`);
+                overlayBack.style.setProperty('--y', `${percentY}%`);
+            } else {
+                overlayFront.style.setProperty('--x', `${percentX}%`);
+                overlayFront.style.setProperty('--y', `${percentY}%`);
+            }
+        });
+
+        // Dukungan layar sentuh untuk perangkat mobile
+        wrapper.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                const rect = wrapper.getBoundingClientRect();
+                const x = (e.touches[0].clientX - rect.left) / rect.width;
+                const y = (e.touches[0].clientY - rect.top) / rect.height;
+                
+                const isFlipped = cardInner && cardInner.classList.contains('flipped');
+                const rotX = (0.5 - y) * 8;
+                const rotY = (x - 0.5) * 8;
+                
+                wrapper.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
+                
+                const percentX = x * 100;
+                const percentY = y * 100;
+                
+                if (isFlipped) {
+                    overlayBack.style.setProperty('--x', `${100 - percentX}%`);
+                    overlayBack.style.setProperty('--y', `${percentY}%`);
+                } else {
+                    overlayFront.style.setProperty('--x', `${percentX}%`);
+                    overlayFront.style.setProperty('--y', `${percentY}%`);
+                }
+            }
+        }, { passive: true });
+
+        // Fungsi untuk mengembalikan posisi poster ke semula saat kursor keluar
+        const resetEffects = () => {
+            wrapper.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+            if (overlayFront) {
+                overlayFront.style.setProperty('--x', '50%');
+                overlayFront.style.setProperty('--y', '50%');
+            }
+            if (overlayBack) {
+                overlayBack.style.setProperty('--x', '50%');
+                overlayBack.style.setProperty('--y', '50%');
+            }
+        };
+
+        wrapper.addEventListener('mouseleave', resetEffects);
+        wrapper.addEventListener('touchend', resetEffects);
+    </script>
+
+</body>
+</html>
