@@ -405,8 +405,7 @@
         }
 
         let hasStarted = false;
-        let mediaRecorder = null;
-        let recordedChunks = [];
+
         let flipToMapTimeout = null;
         let flipToPosterTimeout = null;
         let presentationEndTimeout = null;
@@ -465,87 +464,10 @@
                 }
             }
 
-            let mediaRecorder = null;
-            let recordedChunks = [];
-            let recordingSupported = !isAutoplay && typeof navigator !== 'undefined' && navigator.mediaDevices && typeof navigator.mediaDevices.getDisplayMedia === 'function';
 
-            // 2. Minta izin perekaman layar internal jika didukung dan bukan autoplay
-            if (recordingSupported) {
-                try {
-                    const tempStream = await navigator.mediaDevices.getDisplayMedia({
-                        video: {
-                            displaySurface: "browser",
-                            width: { ideal: 1280 },
-                            height: { ideal: 720 },
-                            frameRate: { ideal: 30 }
-                        },
-                        audio: true
-                    });
-                    
-                    // Setup MediaRecorder jika stream tersedia
-                    if (tempStream) {
-                        recordedChunks = [];
-                        let options = { mimeType: 'video/mp4' };
-                        if (!MediaRecorder.isTypeSupported(options.mimeType)) {
-                            options.mimeType = 'video/webm;codecs=vp9,opus';
-                        }
-
-                        try {
-                            mediaRecorder = new MediaRecorder(tempStream, options);
-                            mediaRecorder.ondataavailable = function(e) {
-                                if (e.data && e.data.size > 0) {
-                                    recordedChunks.push(e.data);
-                                }
-                            };
-
-                            mediaRecorder.onstop = function() {
-                                tempStream.getTracks().forEach(track => track.stop());
-                                const blob = new Blob(recordedChunks, { type: options.mimeType });
-                                const url = URL.createObjectURL(blob);
-                                const a = document.createElement('a');
-                                a.style.display = 'none';
-                                a.href = url;
-                                const extension = options.mimeType.includes('mp4') ? 'mp4' : 'webm';
-                                a.download = `Nobar_Pesta_Babi.${extension}`;
-                                document.body.appendChild(a);
-                                a.click();
-                                setTimeout(() => {
-                                    document.body.removeChild(a);
-                                    URL.revokeObjectURL(url);
-                                }, 100);
-                                
-                                hasStarted = false;
-                                if (playBtn) playBtn.classList.remove('hidden');
-
-                                if (flipToMapTimeout) clearTimeout(flipToMapTimeout);
-                                if (flipToPosterTimeout) clearTimeout(flipToPosterTimeout);
-                                if (presentationEndTimeout) clearTimeout(presentationEndTimeout);
-                                if (cardInner) {
-                                    cardInner.classList.remove('flipped');
-                                }
-                                
-                                try {
-                                    if (document.exitFullscreen) {
-                                        document.exitFullscreen();
-                                    } else if (document.webkitExitFullscreen) {
-                                        document.webkitExitFullscreen();
-                                    }
-                                } catch (e) {}
-                            };
-
-                            mediaRecorder.start();
-                        } catch (e) {
-                            console.error("Gagal memulai MediaRecorder:", e);
-                            tempStream.getTracks().forEach(track => track.stop());
-                        }
-                    }
-                } catch (err) {
-                    console.warn("Izin perekaman internal ditolak atau gagal, lanjut memutar audio:", err);
-                }
-            }
 
             // 3. Pengumuman TTS (Text-to-Speech) dengan Fallback Visual jika tidak didukung (misal di Facebook WebView)
-            const teksVO = "Jangan lewatkan! Nonton Bareng film dokumenter spesial: Pesta Babi. Acara dimulai hari Minggu, dua puluh empat Mei, jam sembilan malam waktu indonesia tengah, langsung dari Suke Highland. Jangan lupa ajak keluarga dan teman-teman! Tempat terbatas, datang paling awal untuk mendapatkan spot terbaik! Jangan sampai terlewatkan, kami tunggu kedatangannya!";
+            const teksVO = "Jangan lewatkan! Acara Nonton Bareng film dokumenter spesial: Pesta Babi. Datang, tonton, dan bawa pulang insait barumu. Acara dimulai hari Minggu, dua puluh empat Mei, jam sembilan malam waktu indonesia tengah, langsung dari Suke Highland. Jangan lupa ajak keluarga dan teman-teman! Ingat, tempat terbatas, datang paling cepat untuk mendapatkan spot terbaik! Jangan sampai kelewatan, kami tunggu kedatangannya!";
 
             let ttsTriggered = false;
             let ttsWatchdog = null;
@@ -698,24 +620,19 @@
                     } else {
                         clearInterval(fadeAudio);
                         
-                        // Setelah musik kembali ke volume normal, tunggu 4 detik sebagai outro musik, lalu matikan rekaman
+                        // Setelah musik kembali ke volume normal, tunggu 4 detik sebagai outro musik, lalu reset status
                         setTimeout(() => {
-                            if (mediaRecorder && mediaRecorder.state !== "inactive") {
-                                mediaRecorder.stop();
-                            } else {
-                                // Jika tidak merekam (misal merekam manual di HP), reset status agar bisa diputar kembali
-                                hasStarted = false;
-                                if (playBtn) playBtn.classList.remove('hidden');
-                                
-                                // Keluar dari mode fullscreen setelah selesai
-                                try {
-                                    if (document.exitFullscreen) {
-                                        document.exitFullscreen();
-                                    } else if (document.webkitExitFullscreen) {
-                                        document.webkitExitFullscreen();
-                                    }
-                                } catch (e) {}
-                            }
+                            hasStarted = false;
+                            if (playBtn) playBtn.classList.remove('hidden');
+                            
+                            // Keluar dari mode fullscreen setelah selesai
+                            try {
+                                if (document.exitFullscreen) {
+                                    document.exitFullscreen();
+                                } else if (document.webkitExitFullscreen) {
+                                    document.webkitExitFullscreen();
+                                }
+                            } catch (e) {}
                         }, 4000);
                     }
                 }, 200);
